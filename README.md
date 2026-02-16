@@ -4,7 +4,7 @@ A full-stack course summaries platform built for university students. Features p
 
 **Live site:** [orin-summaries.vercel.app](https://orin-summaries.vercel.app)
 
-> **Note:** This repository contains the application source code. Course content (summaries, PDFs) is not included as it is sold on the live site. A demo course is provided to showcase the rendering pipeline.
+> **📌 Portfolio Snapshot:** This repository is a public snapshot of a private production codebase. Course content (summaries, PDFs) and environment variables are excluded — the code is shared for review purposes only. Visit the live site to see it in action.
 
 ---
 

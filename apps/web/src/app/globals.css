@@ -1,0 +1,276 @@
+@import "tailwindcss";
+
+/* === Base === */
+body {
+  background: #0a0a0a;
+  color: #e5e5e5;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* === Prose / Article Content === */
+article.prose {
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+article.prose h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #f5f5f5;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.5rem;
+}
+
+article.prose h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: #e5e5e5;
+}
+
+article.prose h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #d4d4d4;
+}
+
+article.prose p {
+  margin-bottom: 1rem;
+}
+
+article.prose strong {
+  color: #f5f5f5;
+  font-weight: 600;
+}
+
+article.prose a {
+  color: #a78bfa;
+  text-decoration: underline;
+}
+
+article.prose a:hover {
+  color: #c4b5fd;
+}
+
+article.prose ul,
+article.prose ol {
+  margin-bottom: 1rem;
+  padding-right: 1.5rem;
+}
+
+article.prose li {
+  margin-bottom: 0.25rem;
+}
+
+article.prose blockquote {
+  border-right: 3px solid #6b7280;
+  padding-right: 1rem;
+  margin-right: 0;
+  margin-bottom: 1rem;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+article.prose hr {
+  border-color: #374151;
+  margin: 2rem 0;
+}
+
+article.prose code {
+  background: #1f2937;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  color: #f9a8d4;
+}
+
+article.prose pre {
+  background: #111827;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+  border: 1px solid #1f2937;
+  direction: ltr;
+  text-align: left;
+}
+
+article.prose pre code {
+  background: none;
+  padding: 0;
+  color: #e5e7eb;
+  direction: ltr;
+  unicode-bidi: plaintext;
+}
+
+/* Inline code in RTL text */
+article.prose :not(pre) > code {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* === Tables === */
+article.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  direction: rtl;
+}
+
+article.prose th {
+  background: #1f1f3a;
+  color: #c4b5fd;
+  padding: 0.75rem;
+  text-align: right;
+  border-bottom: 2px solid #374151;
+  font-weight: 600;
+}
+
+article.prose td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #1f2937;
+}
+
+article.prose tr:hover {
+  background: #111827;
+}
+
+/* === Admonitions (MkDocs !!! blocks) === */
+.admonition {
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  border: 1px solid #1f2937;
+}
+
+.admonition-title {
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+}
+
+.admonition-content {
+  padding: 0.75rem 1rem;
+}
+
+.admonition-content > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Info */
+.admonition-info {
+  background: #0c1929;
+  border-color: #1e40af;
+}
+.admonition-info > .admonition-title {
+  background: #1e3a5f;
+  color: #93c5fd;
+}
+
+/* Note */
+.admonition-note {
+  background: #0c1929;
+  border-color: #1e40af;
+}
+.admonition-note > .admonition-title {
+  background: #1e3a5f;
+  color: #93c5fd;
+}
+
+/* Tip */
+.admonition-tip {
+  background: #052e16;
+  border-color: #166534;
+}
+.admonition-tip > .admonition-title {
+  background: #14532d;
+  color: #86efac;
+}
+
+/* Example */
+.admonition-example {
+  background: #1a0a2e;
+  border-color: #6b21a8;
+}
+.admonition-example > .admonition-title {
+  background: #3b0764;
+  color: #d8b4fe;
+}
+
+/* Abstract / Definition / Theorem */
+.admonition-abstract,
+.admonition-definition,
+.admonition-theorem {
+  background: #1a1a2e;
+  border-color: #4338ca;
+}
+.admonition-abstract > .admonition-title,
+.admonition-definition > .admonition-title,
+.admonition-theorem > .admonition-title {
+  background: #312e81;
+  color: #a5b4fc;
+}
+
+/* Warning */
+.admonition-warning {
+  background: #1c1305;
+  border-color: #a16207;
+}
+.admonition-warning > .admonition-title {
+  background: #422006;
+  color: #fcd34d;
+}
+
+/* Danger */
+.admonition-danger {
+  background: #1c0505;
+  border-color: #dc2626;
+}
+.admonition-danger > .admonition-title {
+  background: #450a0a;
+  color: #fca5a5;
+}
+
+/* === Collapsible admonitions === */
+details.collapsible {
+  cursor: pointer;
+}
+
+details.collapsible > summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+details.collapsible > summary::before {
+  content: "▶";
+  display: inline-block;
+  margin-left: 0.5rem;
+  transition: transform 0.2s;
+  font-size: 0.75rem;
+}
+
+details.collapsible[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+/* === KaTeX overrides for RTL === */
+.katex-display {
+  direction: ltr;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.katex {
+  direction: ltr;
+  font-size: 1.05em;
+}
+
+/* Inline math in RTL text */
+article.prose .katex {
+  unicode-bidi: isolate;
+}

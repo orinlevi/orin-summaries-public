@@ -1,0 +1,19 @@
+{
+  "name": "@orin/remark-mkdocs",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "echo 'No build step - consumed as TypeScript by Next.js'",
+    "lint": "echo 'Lint placeholder'"
+  },
+  "dependencies": {
+    "unified": "^11.0.0",
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/mdast": "^4.0.0",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,983 @@
+{
+  "courses": [
+    {
+      "id": "discrete1",
+      "slug": "discrete-math-1",
+      "title": "מתמטיקה בדידה 1",
+      "description": "אינדוקציה, קבוצות, יחסים, פונקציות ועוצמות",
+      "semester": "A",
+      "year": 1,
+      "category": "cs-math",
+      "accentColor": "purple",
+      "priceILS": 49,
+      "contentDir": "discrete1",
+      "downloadables": [
+        { "title": "סיכום בדידה 1 - PDF", "file": "/assets/discrete1/discrete1_latex_summary.pdf" },
+        { "title": "דף הגדרות", "file": "/admin-assets/discrete1/definitions.pdf", "adminOnly": true },
+        { "title": "דף נוסחאות מורחב", "file": "/admin-assets/discrete1/discrete_mathematics1-extended_formula_sheet.pdf", "adminOnly": true }
+      ],
+      "sections": [
+        {
+          "name": "סיכומים",
+          "items": [
+            { "id": 1, "slug": "unit-1", "file": "units/unit1.md", "title": "אינדוקציה מתמטית", "free": true },
+            { "id": 2, "slug": "unit-2", "file": "units/unit2.md", "title": "הצרנה, פעולות ויחסים", "free": true },
+            { "id": 3, "slug": "unit-3", "file": "units/unit3.md", "title": "קבוצת חזקה, פעולות מוכללות", "free": false },
+            { "id": 4, "slug": "unit-4", "file": "units/unit4.md", "title": "יחסים", "free": false },
+            { "id": 5, "slug": "unit-5", "file": "units/unit5.md", "title": "פונקציות - מושגי יסוד", "free": false },
+            { "id": 6, "slug": "unit-6", "file": "units/unit6.md", "title": "פונקציות חח\"ע ועל", "free": false },
+            { "id": 7, "slug": "unit-7", "file": "units/unit7.md", "title": "הרכבת פונקציות ופונקציה הפוכה", "free": false },
+            { "id": 8, "slug": "unit-8", "file": "units/unit8.md", "title": "יחסי שקילות, מחלקות", "free": false },
+            { "id": 9, "slug": "unit-9", "file": "units/unit9.md", "title": "חלוקה, אי תלות בנציג, יחסי סדר", "free": false },
+            { "id": 10, "slug": "unit-10", "file": "units/unit10.md", "title": "עוצמות", "free": false },
+            { "id": 11, "slug": "unit-11", "file": "units/unit11.md", "title": "לכסון", "free": false },
+            { "id": 12, "slug": "unit-12", "file": "units/unit12.md", "title": "משפט קש\"ב, פעולות עוצמות", "free": false },
+            { "id": 13, "slug": "unit-13", "file": "units/unit13.md", "title": "חשבון עוצמות, איחוד בן מניה", "free": false }
+          ]
+        },
+        {
+          "name": "תרגילים",
+          "items": [
+            { "id": 14, "slug": "ex-induction", "file": "exercises/induction_ex.md", "title": "תרגילי אינדוקציה", "free": true },
+            { "id": 15, "slug": "ex-sets", "file": "exercises/sets_ex.md", "title": "תרגילי קבוצות", "free": false },
+            { "id": 16, "slug": "ex-functions", "file": "exercises/functions_ex.md", "title": "תרגילי פונקציות", "free": false },
+            { "id": 17, "slug": "ex-relations", "file": "exercises/relations_ex.md", "title": "תרגילי יחסים", "free": false },
+            { "id": 18, "slug": "ex-cardinality", "file": "exercises/cardinality_ex.md", "title": "תרגילי עוצמות", "free": false }
+          ]
+        },
+        {
+          "name": "שאלות מבחנים",
+          "items": [
+            { "id": 19, "slug": "exam-sets", "file": "exams/sets.md", "title": "מבחנים - קבוצות", "free": true },
+            { "id": 20, "slug": "exam-functions", "file": "exams/functions.md", "title": "מבחנים - פונקציות", "free": false },
+            { "id": 21, "slug": "exam-cardinality", "file": "exams/cardinality.md", "title": "מבחנים - עוצמות", "free": false },
+            { "id": 22, "slug": "exam-equivalence", "file": "exams/equivalence.md", "title": "מבחנים - יחסי שקילות", "free": false },
+            { "id": 23, "slug": "exam-relations", "file": "exams/relations.md", "title": "מבחנים - יחסים", "free": false },
+            { "id": 24, "slug": "exam-induction", "file": "exams/induction.md", "title": "מבחנים - אינדוקציה", "free": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "discrete2",
+      "slug": "discrete-math-2",
+      "title": "מתמטיקה בדידה 2",
+      "description": "קומבינטוריקה, שובך יונים, נוסחאות נסיגה, תורת הגרפים",
+      "semester": "B",
+      "year": 1,
+      "category": "cs-math",
+      "accentColor": "teal",
+      "priceILS": 49,
+      "contentDir": "discrete2",
+      "downloadables": [
+        { "title": "סיכום בדידה 2 - PDF", "file": "/assets/discrete2/discrete2_latex_summary.pdf" }
+      ],
+      "sections": [
+        {
+          "name": "סיכומים",
+          "items": [
+            { "id": 1, "slug": "unit-1", "file": "units/unit1.md", "title": "שיטות ספירה בסיסיות", "free": true },
+            { "id": 2, "slug": "unit-2", "file": "units/unit2.md", "title": "שיטות ספירה בסיסיות (המשך)", "free": true },
+            { "id": 3, "slug": "unit-3", "file": "units/unit3.md", "title": "זהויות קומבינטוריות", "free": false },
+            { "id": 4, "slug": "unit-4", "file": "units/unit4.md", "title": "נוסחת הבינום של ניוטון", "free": false },
+            { "id": 5, "slug": "unit-5", "file": "units/unit5.md", "title": "עיקרון שובך היונים", "free": false },
+            { "id": 6, "slug": "unit-6", "file": "units/unit6.md", "title": "עיקרון ההכלה וההדחה", "free": false },
+            { "id": 7, "slug": "unit-7", "file": "units/unit7.md", "title": "הכלה והדחה + נוסחאות נסיגה", "free": false },
+            { "id": 8, "slug": "unit-8", "file": "units/unit8.md", "title": "נוסחאות נסיגה", "free": false },
+            { "id": 9, "slug": "unit-9", "file": "units/unit9.md", "title": "תורת הגרפים - מושגים בסיסיים", "free": false },
+            { "id": 10, "slug": "unit-10", "file": "units/unit10.md", "title": "עצים וגרפים דו-צדדיים", "free": false },
+            { "id": 11, "slug": "unit-11", "file": "units/unit11.md", "title": "משפט קיילי לספירת עצים", "free": false },
+            { "id": 12, "slug": "unit-12", "file": "units/unit12.md", "title": "מספרי רמזי", "free": false },
+            { "id": 13, "slug": "unit-13", "file": "units/unit13.md", "title": "מספרי קטלן", "free": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "calculus1b",
+      "slug": "calculus-1b",
+      "title": "חשבון אינפיניטסימלי 1ב",
+      "description": "קבוצות, סדרות, טורים, גבולות, רציפות, נגזרות ואינטגרלים",
+      "semester": "A",
+      "year": 1,
+      "category": "cs-math",
+      "accentColor": "teal",
+      "priceILS": 49,
+      "contentDir": "calculus1b",
+      "downloadables": [
+        { "title": "סיכום חדו\"א 1ב - PDF", "file": "/assets/calculus1b/calculus1b_latex_summary.pdf" },
+        { "title": "דף נוסחאות מורחב", "file": "/admin-assets/calculus1b/calculus1B-extended_formula_sheet.pdf", "adminOnly": true }
+      ],
+      "sections": [
+        {
+          "name": "סיכומים",
+          "items": [
+            { "id": 1, "slug": "chapter-1", "file": "chapters/chapter1.md", "title": "תורת הקבוצות", "free": true },
+            { "id": 2, "slug": "chapter-2", "file": "chapters/chapter2.md", "title": "המספרים הממשיים", "free": true },
+            { "id": 3, "slug": "chapter-3", "file": "chapters/chapter3.md", "title": "סדרות", "free": false },
+            { "id": 4, "slug": "chapter-4", "file": "chapters/chapter4.md", "title": "טורים", "free": false },
+            { "id": 5, "slug": "chapter-5", "file": "chapters/chapter5.md", "title": "פונקציות", "free": false },
+            { "id": 6, "slug": "chapter-6", "file": "chapters/chapter6.md", "title": "גבולות", "free": false },
+            { "id": 7, "slug": "chapter-7", "file": "chapters/chapter7.md", "title": "רציפות", "free": false },
+            { "id": 8, "slug": "chapter-8", "file": "chapters/chapter8.md", "title": "גזירות, לופיטל וטיילור", "free": false },
+            { "id": 9, "slug": "chapter-9", "file": "chapters/chapter9.md", "title": "פונקציות קדומות", "free": false },
+            { "id": 10, "slug": "chapter-10", "file": "chapters/chapter10.md", "title": "אינטגרל רימן", "free": false },
+            { "id": 11, "slug": "chapter-11", "file": "chapters/chapter11.md", "title": "המשפט היסודי", "free": false },
+            { "id": 12, "slug": "chapter-12", "file": "chapters/chapter12.md", "title": "אינטגרלים לא אמיתיים", "free": false }
+          ]
+        },
+        {
+          "name": "נספחים",
+          "items": [
+            { "id": 13, "slug": "formula-sheet", "file": "formula_sheet.md", "title": "דף נוסחאות", "free": true },
+            { "id": 14, "slug": "material-mapping", "file": "official_material_mapping.md", "title": "מיפוי חומר רשמי", "free": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "calculus2b",
+      "slug": "calculus-2b",
+      "title": "חשבון אינפיניטסימלי 2ב",
+      "description": "סדרות ופונקציות, פורייה, חדו\"א רב-משתני, אינטגרלים כפולים",
+      "semester": "B",
+      "year": 1,
+      "category": "cs-math",
+      "accentColor": "teal",
+      "priceILS": 49,
+      "contentDir": "calculus2b",
+      "downloadables": [
+        { "title": "סיכום חדו\"א 2ב - PDF", "file": "/assets/calculus2b/calculus2b_latex_summary.pdf" }
+      ],
+      "sections": [
+        {
+          "name": "סיכומים",
+          "items": [
+            { "id": 1, "slug": "chapter-1", "file": "chapters/chapter1.md", "title": "התכנסות נקודתית ובמידה שווה", "free": true },
+            { "id": 2, "slug": "chapter-2", "file": "chapters/chapter2.md", "title": "קריטריוני התכנסות", "free": true },
+            { "id": 3, "slug": "chapter-3", "file": "chapters/chapter3.md", "title": "התכנסות במ\"ש, גזירות ואינטגרביליות", "free": false },
+            { "id": 4, "slug": "chapter-4", "file": "chapters/chapter4.md", "title": "טור פורייה מרוכב ונוסחת פרסבל", "free": false },
+            { "id": 5, "slug": "chapter-5", "file": "chapters/chapter5.md", "title": "התכנסות טור פורייה ושימושים", "free": false },
+            { "id": 6, "slug": "chapter-6", "file": "chapters/chapter6.md", "title": "מרחבים אוקלידיים וטופולוגיה", "free": false },
+            { "id": 7, "slug": "chapter-7", "file": "chapters/chapter7.md", "title": "גבולות ורציפות בכמה משתנים", "free": false },
+            { "id": 8, "slug": "chapter-8", "file": "chapters/chapter8.md", "title": "נגזרות חלקיות ודיפרנציאביליות", "free": false },
+            { "id": 9, "slug": "chapter-9", "file": "chapters/chapter9.md", "title": "כלל השרשרת והפונקציה הסתומה", "free": false },
+            { "id": 10, "slug": "chapter-10", "file": "chapters/chapter10.md", "title": "קיצון, טיילור וכופלי לגרנז'", "free": false },
+            { "id": 11, "slug": "chapter-11", "file": "chapters/chapter11.md", "title": "אינטגרלים על תיבות ומשפט לבג", "free": false },
+            { "id": 12, "slug": "chapter-12", "file": "chapters/chapter12.md", "title": "פוביני, החלפת משתנים ואינטגרלים לא אמיתיים", "free": false }
+          ]
+        },
+        {
+          "name": "נספחים",
+          "items": [
+            { "id": 13, "slug": "formula-sheet", "file": "formula_sheet.md", "title": "דף נוסחאות", "free": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lini1b",
+      "slug": "linear-algebra-1b",
+      "title": "אלגברה לינארית 1ב",
+      "description": "שדות, מרחבים וקטוריים, מטריצות, העתקות לינאריות, דטרמיננטות",
+      "semester": "A",
+      "year": 1,
+      "category": "cs-math",
+      "accentColor": "purple",
+      "priceILS": 49,
+      "contentDir": "lini1b",
+      "downloadables": [
+        { "title": "סיכום לינארית 1ב - PDF", "file": "/assets/lini1b/lini1b_latex_summary.pdf" },
+        { "title": "דף נוסחאות מורחב", "file": "/admin-assets/lini1b/linear_algebra1B_formula_sheet-(extended).pdf", "adminOnly": true }
+      ],
+      "sections": [
+        {
+          "name": "סיכומים",
+          "items": [
+            { "id": 1, "slug": "fields", "file": "notes/fields.md", "title": "שדות", "free": true },
+            { "id": 2, "slug": "complex-numbers", "file": "notes/complex_numbers.md", "title": "מספרים מרוכבים", "free": true },
+            { "id": 3, "slug": "linear-systems", "file": "notes/linear_systems.md", "title": "מערכות משוואות לינאריות", "free": false },
+            { "id": 4, "slug": "vector-spaces", "file": "notes/vector_spaces.md", "title": "מרחבים וקטוריים", "free": false },
+            { "id": 5, "slug": "subspaces", "file": "notes/subspaces_sum_intersection.md", "title": "סכום וחיתוך תת-מרחבים", "free": false },
+            { "id": 6, "slug": "linear-dependence", "file": "notes/linear_dependence.md", "title": "תלות ואי-תלות לינארית", "free": false },
+            { "id": 7, "slug": "matrices", "file": "notes/matrices.md", "title": "מטריצות", "free": false },
+            { "id": 8, "slug": "row-column-spaces", "file": "notes/row_column_spaces.md", "title": "מרחבי שורות ועמודות", "free": false },
+            { "id": 9, "slug": "linear-transformations", "file": "notes/linear_transformations.md", "title": "העתקות לינאריות", "free": false },
+            { "id": 10, "slug": "similar-matrices", "file": "notes/similar_matrices.md", "title": "קואורדינטות ומטריצות מייצגות", "free": false },
+            { "id": 11, "slug": "determinants", "file": "notes/determinants.md", "title": "דטרמיננטות", "free": false },
+            { "id": 12, "slug": "cramers-rule", "file": "notes/cramers_rule.md", "title": "כלל קרמר", "free": false }
+          ]
+        },
+        {
+          "name": "תרגול",
+          "items": [
+            { "id": 13, "slug": "exam-questions", "file": "practice/exam_questions.md", "title": "שאלות מבחנים", "free": false },
+            { "id": 14, "slug": "hw-questions", "file": "practice/hw_questions.md", "title": "שאלות תרגילי בית", "free": false },
+            { "id": 15, "slug": "recitation-questions", "file": "practice/recitation_questions.md", "title": "שאלות תרגולים", "free": false },
+            { "id": 16, "slug": "tricks-cheatsheet", "file": "practice/tricks_cheatsheet.md", "title": "טריקים ודף סיכום", "free": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lini2b",
+      "slug": "linear-algebra-2b",
+      "title": "אלגברה לינארית 2ב",
+      "description": "פולינומים, ערכים עצמיים, מכפלה פנימית, אופרטורים",
+      "semester": "B",
+      "year": 1,
+      "category": "cs-math",
+      "accentColor": "purple",
+      "priceILS": 49,
+      "contentDir": "lini2b",
+      "downloadables": [
+        { "title": "סיכום לינארית 2ב - PDF", "file": "/assets/lini2b/lini2b_latex_summary.pdf" }
+      ],
+      "sections": [
+        {
+          "name": "סיכומים",
+          "items": [
+            { "id": 1, "slug": "polynomials", "file": "notes/polynomials.md", "title": "פולינומים", "free": true },
+            { "id": 2, "slug": "eigenvalues", "file": "notes/eigenvalues.md", "title": "ערכים עצמיים ולכסון", "free": true },
+            { "id": 3, "slug": "inner-product", "file": "notes/inner_product.md", "title": "מכפלה פנימית", "free": false },
+            { "id": 4, "slug": "adjoint-operators", "file": "notes/adjoint_operators.md", "title": "אופרטורים צמודים", "free": false },
+            { "id": 5, "slug": "unitary-orthogonal", "file": "notes/unitary_orthogonal.md", "title": "לכסון אוניטרי ואורתוגונלי", "free": false },
+            { "id": 6, "slug": "positive-definite", "file": "notes/positive_definite.md", "title": "מטריצות מוגדרות חיובית", "free": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "statistics1",
+      "slug": "statistics-1",
+      "title": "סטטיסטיקה לפסיכולוגיה א'",
+      "description": "מדדי מרכז, פיזור, הסתברות, התפלגות נורמלית, בדיקת השערות",
+      "semester": "A",
+      "year": 1,
+      "category": "psychology",
+      "accentColor": "indigo",
+      "priceILS": 39,
+      "contentDir": "statistics1",
+      "downloadables": [
+        { "title": "סיכום סטטיסטיקה - PDF", "file": "/assets/statistics1/statistics1_latex_summary.pdf" },
+        { "title": "טבלת Z", "file": "/assets/statistics1/z-table.pdf", "free": true },
+        { "title": "דף נוסחאות 0", "file": "/admin-assets/statistics1/formula_sheet0.pdf", "adminOnly": true },
+        { "title": "דף נוסחאות 1", "file": "/admin-assets/statistics1/formula_sheet1.pdf", "adminOnly": true }
+      ],
+      "sections": [
+        {
+          "name": "סיכומים",
+          "items": [
+            { "id": 1, "slug": "unit-1", "file": "units/unit1.md", "title": "מושגי יסוד וסולמות מדידה", "free": true },
+            { "id": 2, "slug": "unit-2", "file": "units/unit2.md", "title": "מדדי מרכז", "free": true },
+            { "id": 3, "slug": "unit-3", "file": "units/unit3.md", "title": "מדדי פיזור", "free": false },
+            { "id": 4, "slug": "unit-4", "file": "units/unit4.md", "title": "מדדי מיקום יחסי ומדדי קשר", "free": false },
+            { "id": 5, "slug": "unit-5", "file": "units/unit5.md", "title": "קומבינטוריקה", "free": false },
+            { "id": 6, "slug": "unit-6", "file": "units/unit6.md", "title": "הסתברות", "free": false },
+            { "id": 7, "slug": "unit-7", "file": "units/unit7.md", "title": "מעבר ממדגם לאוכלוסייה", "free": false },
+            { "id": 8, "slug": "unit-8", "file": "units/unit8.md", "title": "ייצוגים גרפיים, התפלגות וצפיפות", "free": false },
+            { "id": 9, "slug": "unit-9", "file": "units/unit9.md", "title": "ההתפלגות הנורמלית", "free": false },
+            { "id": 10, "slug": "unit-10", "file": "units/unit10.md", "title": "התפלגות הדגימה", "free": false },
+            { "id": 11, "slug": "unit-11", "file": "units/unit11.md", "title": "בדיקת השערות סטטיסטיות", "free": false },
+            { "id": 12, "slug": "unit-12", "file": "units/unit12.md", "title": "טעויות סטטיסטיות ועוצמת המבחן", "free": false },
+            { "id": 13, "slug": "unit-13", "file": "units/unit13.md", "title": "גודל אפקט ורווח סמך", "free": false }
+          ]
+        },
+        {
+          "name": "נספחים",
+          "items": [
+            { "id": 14, "slug": "course-summary", "file": "units/course_sum.md", "title": "סיכום הקורס", "free": false },
+            { "id": 15, "slug": "z-table", "file": "units/ztable.md", "title": "טבלת Z", "free": true }
+          ]
+        },
+        {
+          "name": "שאלות מבחנים",
+          "items": [
+            { "id": 16, "slug": "exam-cheatsheet", "file": "exams/cheatsheet.md", "title": "דף סיכום למבחן", "free": false },
+            { "id": 17, "slug": "exam-questions", "file": "exams/questions.md", "title": "שאלות מבחנים", "free": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cs1001",
+      "slug": "intro-to-cs",
+      "title": "מבוא מורחב למדעי המחשב",
+      "description": "Python, סיבוכיות, מבני נתונים, אלגוריתמים, דחיסה, קריפטוגרפיה",
+      "semester": "B",
+      "year": 1,
+      "category": "cs-math",
+      "accentColor": "indigo",
+      "priceILS": 49,
+      "contentDir": "cs1001",
+      "downloadables": [
+        { "title": "סיכום מבוא למדמ\"ח - PDF", "file": "/assets/cs1001/cs1001_latex_summary.pdf" }
+      ],
+      "notebooks": [
+        { "title": "חיפוש בינארי וסיבוכיות", "file": "/assets/cs1001/notebooks/binary_search_and_complexity.ipynb", "colab": "https://colab.research.google.com/github/orinlevi/CS1001_sum/blob/master/notebooks/binary_search_and_complexity.ipynb" },
+        { "title": "רקורסיה ו-Memoization", "file": "/assets/cs1001/notebooks/recursion_and_memoization.ipynb", "colab": "https://colab.research.google.com/github/orinlevi/CS1001_sum/blob/master/notebooks/recursion_and_memoization.ipynb" },
+        { "title": "מבני נתונים", "file": "/assets/cs1001/notebooks/data_structures.ipynb", "colab": "https://colab.research.google.com/github/orinlevi/CS1001_sum/blob/master/notebooks/data_structures.ipynb" },
+        { "title": "דחיסה", "file": "/assets/cs1001/notebooks/compression.ipynb", "colab": "https://colab.research.google.com/github/orinlevi/CS1001_sum/blob/master/notebooks/compression.ipynb" },
+        { "title": "מיון", "file": "/assets/cs1001/notebooks/sorting.ipynb", "colab": "https://colab.research.google.com/github/orinlevi/CS1001_sum/blob/master/notebooks/sorting.ipynb" },
+        { "title": "פונקציות מסדר גבוה", "file": "/assets/cs1001/notebooks/higher_order.ipynb", "colab": "https://colab.research.google.com/github/orinlevi/CS1001_sum/blob/master/notebooks/higher_order.ipynb" },
+        { "title": "זיכרון", "file": "/assets/cs1001/notebooks/memory.ipynb", "colab": "https://colab.research.google.com/github/orinlevi/CS1001_sum/blob/master/notebooks/memory.ipynb" },
+        { "title": "קריפטוגרפיה", "file": "/assets/cs1001/notebooks/cryptography.ipynb", "colab": "https://colab.research.google.com/github/orinlevi/CS1001_sum/blob/master/notebooks/cryptography.ipynb" },
+        { "title": "תיקון שגיאות", "file": "/assets/cs1001/notebooks/error_correction.ipynb", "colab": "https://colab.research.google.com/github/orinlevi/CS1001_sum/blob/master/notebooks/error_correction.ipynb" },
+        { "title": "התאמת מחרוזות", "file": "/assets/cs1001/notebooks/string_matching.ipynb", "colab": "https://colab.research.google.com/github/orinlevi/CS1001_sum/blob/master/notebooks/string_matching.ipynb" }
+      ],
+      "codeFiles": [
+        { "title": "יסודות פייתון", "file": "/assets/cs1001/code/basics_demo.py" },
+        { "title": "זיכרון", "file": "/assets/cs1001/code/memory_demo.py" },
+        { "title": "רשימות", "file": "/assets/cs1001/code/lists_demo.py" },
+        { "title": "מחרוזות", "file": "/assets/cs1001/code/strings_demo.py" },
+        { "title": "מילונים וקבוצות", "file": "/assets/cs1001/code/dict_set_demo.py" },
+        { "title": "רקורסיה", "file": "/assets/cs1001/code/recursion_demo.py" },
+        { "title": "פונקציות מסדר גבוה", "file": "/assets/cs1001/code/higher_order_demo.py" },
+        { "title": "איטרטורים וגנרטורים", "file": "/assets/cs1001/code/iterators_generators_demo.py" },
+        { "title": "מיון", "file": "/assets/cs1001/code/sorting_demo.py" },
+        { "title": "חיפוש בינארי", "file": "/assets/cs1001/code/binary_search.py" },
+        { "title": "Memoization", "file": "/assets/cs1001/code/memoization_demo.py" },
+        { "title": "OOP", "file": "/assets/cs1001/code/oop_demo.py" },
+        { "title": "רשימות מקושרות", "file": "/assets/cs1001/code/linked_lists_demo.py" },
+        { "title": "טבלאות גיבוב", "file": "/assets/cs1001/code/hash_tables_demo.py" },
+        { "title": "ייצוג בינארי והקסדצימלי", "file": "/assets/cs1001/code/binary_and_hex.py" },
+        { "title": "ASCII ו-Unicode", "file": "/assets/cs1001/code/ascii_unicode.py" },
+        { "title": "דחיסה", "file": "/assets/cs1001/code/compression_demo.py" },
+        { "title": "תיקון שגיאות", "file": "/assets/cs1001/code/error_correction_demo.py" },
+        { "title": "קריפטוגרפיה", "file": "/assets/cs1001/code/cryptography_demo.py" },
+        { "title": "התאמת מחרוזות", "file": "/assets/cs1001/code/string_matching_demo.py" },
+        { "title": "עיבוד תמונות", "file": "/assets/cs1001/code/image_processing_demo.py" },
+        { "title": "קבצים", "file": "/assets/cs1001/code/file_io_demo.py" }
+      ],
+      "sections": [
+        {
+          "name": "יסודות פייתון",
+          "items": [
+            { "id": 1, "slug": "basics", "file": "notes/basics.md", "title": "יסודות", "free": true },
+            { "id": 2, "slug": "memory", "file": "notes/memory.md", "title": "זיכרון", "free": true },
+            { "id": 3, "slug": "lists", "file": "notes/lists.md", "title": "רשימות", "free": false },
+            { "id": 4, "slug": "strings", "file": "notes/strings.md", "title": "מחרוזות", "free": false },
+            { "id": 5, "slug": "dictionaries-and-sets", "file": "notes/dictionaries_and_sets.md", "title": "מילונים וקבוצות", "free": false }
+          ]
+        },
+        {
+          "name": "פונקציות",
+          "items": [
+            { "id": 6, "slug": "functions-and-recursion", "file": "notes/functions_and_recursion.md", "title": "פונקציות ורקורסיה", "free": false },
+            { "id": 7, "slug": "higher-order-functions", "file": "notes/higher_order_functions.md", "title": "פונקציות מסדר גבוה", "free": false },
+            { "id": 8, "slug": "iterators-generators", "file": "notes/iterators_generators.md", "title": "איטרטורים וגנרטורים", "free": false }
+          ]
+        },
+        {
+          "name": "סיבוכיות ואלגוריתמים",
+          "items": [
+            { "id": 9, "slug": "complexity", "file": "notes/complexity.md", "title": "סיבוכיות", "free": false },
+            { "id": 10, "slug": "sorting", "file": "notes/sorting.md", "title": "מיון", "free": false },
+            { "id": 11, "slug": "search-binary", "file": "notes/search_binary.md", "title": "חיפוש בינארי", "free": false },
+            { "id": 12, "slug": "memoization", "file": "notes/memoization.md", "title": "Memoization", "free": false }
+          ]
+        },
+        {
+          "name": "מבני נתונים",
+          "items": [
+            { "id": 13, "slug": "oop", "file": "notes/oop.md", "title": "OOP", "free": false },
+            { "id": 14, "slug": "linked-lists", "file": "notes/linked_lists.md", "title": "רשימות מקושרות", "free": false },
+            { "id": 15, "slug": "hash-tables", "file": "notes/hash_tables.md", "title": "טבלאות גיבוב", "free": false }
+          ]
+        },
+        {
+          "name": "ייצוג מידע",
+          "items": [
+            { "id": 16, "slug": "number-representation", "file": "notes/number_representation.md", "title": "ייצוג מספרים", "free": false },
+            { "id": 17, "slug": "text-representation", "file": "notes/text_representation.md", "title": "ייצוג טקסט", "free": false }
+          ]
+        },
+        {
+          "name": "דחיסה וקריפטוגרפיה",
+          "items": [
+            { "id": 18, "slug": "compression", "file": "notes/compression.md", "title": "דחיסה", "free": false },
+            { "id": 19, "slug": "error-correction", "file": "notes/error_correction.md", "title": "תיקון שגיאות", "free": false },
+            { "id": 20, "slug": "cryptography", "file": "notes/cryptography.md", "title": "קריפטוגרפיה", "free": false }
+          ]
+        },
+        {
+          "name": "נושאים נוספים",
+          "items": [
+            { "id": 21, "slug": "string-matching", "file": "notes/string_matching.md", "title": "התאמת מחרוזות", "free": false },
+            { "id": 22, "slug": "image-processing", "file": "notes/image_processing.md", "title": "עיבוד תמונות", "free": false },
+            { "id": 23, "slug": "file-io", "file": "notes/file_io.md", "title": "קבצים", "free": false }
+          ]
+        },
+        {
+          "name": "הכנה לבחינה",
+          "items": [
+            { "id": 24, "slug": "exam-tricks", "file": "notes/exam_tricks.md", "title": "טריקים לבחינה", "free": false },
+            { "id": 25, "slug": "cheat-sheet", "file": "notes/cheat_sheet.md", "title": "דף סיכום", "free": false }
+          ]
+        },
+        {
+          "name": "שאלות מבחנים",
+          "items": [
+            { "id": 26, "slug": "eq-complexity", "file": "exam_questions/complexity.md", "title": "מבחנים - סיבוכיות", "free": false },
+            { "id": 27, "slug": "eq-data-structures", "file": "exam_questions/data_structures.md", "title": "מבחנים - מבני נתונים", "free": false },
+            { "id": 28, "slug": "eq-recursion", "file": "exam_questions/recursion_and_generators.md", "title": "מבחנים - רקורסיה וגנרטורים", "free": false },
+            { "id": 29, "slug": "eq-compression", "file": "exam_questions/compression.md", "title": "מבחנים - דחיסה", "free": false },
+            { "id": 30, "slug": "eq-error-correction", "file": "exam_questions/error_correction.md", "title": "מבחנים - תיקון שגיאות", "free": false },
+            { "id": 31, "slug": "eq-cryptography", "file": "exam_questions/cryptography_and_primes.md", "title": "מבחנים - קריפטוגרפיה", "free": false },
+            { "id": 32, "slug": "eq-memory", "file": "exam_questions/memory.md", "title": "מבחנים - זיכרון", "free": false },
+            { "id": 33, "slug": "eq-misc", "file": "exam_questions/misc_topics.md", "title": "מבחנים - נושאים נוספים", "free": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "intro-psychology",
+      "slug": "intro-to-psychology",
+      "title": "מבוא לפסיכולוגיה",
+      "description": "ביהביוריזם, קוגניציה, התפתחות, חברתית, פסיכופתולוגיה",
+      "semester": "A",
+      "year": 1,
+      "category": "psychology",
+      "accentColor": "cyan",
+      "priceILS": 39,
+      "contentDir": "intro-psychology",
+      "downloadables": [
+        { "title": "סיכום מלל - PDF", "file": "/assets/intro-psychology/mellel_summary.pdf" },
+        { "title": "קריאות חובה - PDF", "file": "/assets/intro-psychology/required_readings.pdf" },
+        { "title": "סיכום LaTeX מלא - PDF", "file": "/assets/intro-psychology/intro-psychology_latex_summary.pdf" }
+      ],
+      "sections": [
+        {
+          "name": "סיכומים",
+          "items": [
+            { "id": 1, "slug": "unit-1", "file": "notes/unit_1.md", "title": "מהי פסיכולוגיה", "free": true },
+            { "id": 2, "slug": "unit-2", "file": "notes/unit_2.md", "title": "הביהביוריזם", "free": true },
+            { "id": 3, "slug": "unit-3", "file": "notes/unit_3.md", "title": "קוגניציה", "free": false },
+            { "id": 4, "slug": "unit-4", "file": "notes/unit_4.md", "title": "גוף ומוח", "free": false },
+            { "id": 5, "slug": "unit-5", "file": "notes/unit_5.md", "title": "התפתחות", "free": false },
+            { "id": 6, "slug": "unit-6", "file": "notes/unit_6.md", "title": "חברתית", "free": false },
+            { "id": 7, "slug": "unit-7", "file": "notes/unit_7.md", "title": "הבדלים בינאישיים", "free": false },
+            { "id": 8, "slug": "unit-8", "file": "notes/unit_8.md", "title": "פסיכופתולוגיה", "free": false },
+            { "id": 9, "slug": "guest-lectures", "file": "notes/guest_lectures.md", "title": "הרצאות אורח", "free": false }
+          ]
+        },
+        {
+          "name": "שאלות מבחנים",
+          "items": [
+            { "id": 10, "slug": "exam-questions", "file": "exams/questions.md", "title": "שאלות מבחנים", "free": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "neuroscience",
+      "slug": "neuroscience-seminar",
+      "title": "סמינר מדעי המוח א'",
+      "description": "יונים, פוטנציאלים, סינפסות, נוירואנטומיה",
+      "semester": "A",
+      "year": 1,
+      "category": "neuroscience",
+      "accentColor": "emerald",
+      "priceILS": 39,
+      "contentDir": "neuroscience",
+      "downloadables": [
+        { "title": "סיכום מדעי המוח - PDF", "file": "/assets/neuroscience/neuroscience_latex_summary.pdf" },
+        { "title": "סיכום מלא (חיצוני)", "file": "/admin-assets/neuroscience/full_sum.pdf", "adminOnly": true }
+      ],
+      "sections": [
+        {
+          "name": "סיכומים",
+          "items": [
+            { "id": 1, "slug": "ions-gradients", "file": "notes/01_ions_gradients.md", "title": "יונים וגרדיאנטים", "free": true },
+            { "id": 2, "slug": "potentials", "file": "notes/02_potentials.md", "title": "פוטנציאלים מדורגים ופעולה", "free": true },
+            { "id": 3, "slug": "conduction", "file": "notes/03_conduction.md", "title": "הולכה באקסון", "free": false },
+            { "id": 4, "slug": "synapses", "file": "notes/04_synapses.md", "title": "סינפסות ורצפטורים", "free": false },
+            { "id": 5, "slug": "neuroanatomy", "file": "notes/05_neuroanatomy.md", "title": "מנחים וחתכים", "free": false },
+            { "id": 6, "slug": "nervous-system", "file": "notes/06_nervous_system.md", "title": "מערכת העצבים", "free": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "intro-chemistry",
+      "slug": "intro-chemistry",
+      "title": "מבוא לכימיה",
+      "description": "מבנה האטום, טבלה מחזורית, קשרים כימיים, VSEPR, pH, סטויכיומטריה",
+      "semester": "A",
+      "year": 1,
+      "category": "neuroscience",
+      "accentColor": "emerald",
+      "priceILS": 0,
+      "contentDir": "intro-chemistry",
+      "downloadables": [
+        { "title": "סיכום כימיה - PDF", "file": "/assets/intro-chemistry/intro_chemistry_summary.pdf" }
+      ],
+      "sections": [
+        {
+          "name": "סיכומים",
+          "items": [
+            { "id": 1, "slug": "fundamentals", "file": "notes/00_fundamentals.md", "title": "מיומנויות בסיס", "free": true },
+            { "id": 2, "slug": "atom-nucleus", "file": "notes/01_atom_nucleus.md", "title": "האטום והגרעין", "free": true },
+            { "id": 3, "slug": "electron-structure", "file": "notes/02_electron_structure.md", "title": "מבנה אלקטרוני ומודלים", "free": true },
+            { "id": 4, "slug": "periodic-table", "file": "notes/03_periodic_table.md", "title": "הטבלה המחזורית ומגמות", "free": true },
+            { "id": 5, "slug": "chemical-bonds", "file": "notes/04_chemical_bonds.md", "title": "קשרים כימיים", "free": true },
+            { "id": 6, "slug": "molecular-geometry", "file": "notes/05_molecular_geometry.md", "title": "גאומטריה מולקולרית (VSEPR)", "free": true },
+            { "id": 7, "slug": "intermolecular-forces", "file": "notes/06_intermolecular_forces.md", "title": "כוחות בין-מולקולריים", "free": true },
+            { "id": 8, "slug": "acids-bases-ph", "file": "notes/07_acids_bases_ph.md", "title": "חומצות, בסיסים ו-pH", "free": true },
+            { "id": 9, "slug": "stoichiometry", "file": "notes/08_stoichiometry.md", "title": "סטויכיומטריה ותגובות", "free": true },
+            { "id": 10, "slug": "radioactivity", "file": "notes/09_radioactivity.md", "title": "רדיואקטיביות", "free": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "intro-physics",
+      "slug": "intro-physics",
+      "title": "מבוא לפיזיקה",
+      "description": "אלקטרוסטטיקה, מעגלי DC ו-RC, קבלים, חוקי קירכהוף",
+      "semester": "A",
+      "year": 1,
+      "category": "neuroscience",
+      "accentColor": "emerald",
+      "priceILS": 0,
+      "contentDir": "intro-physics",
+      "downloadables": [
+        { "title": "סיכום פיזיקה - PDF", "file": "/assets/intro-physics/intro_physics_summary.pdf" }
+      ],
+      "sections": [
+        {
+          "name": "סיכומים",
+          "items": [
+            { "id": 1, "slug": "electrostatics-basics", "file": "notes/01_electrostatics_basics.md", "title": "יסודות אלקטרוסטטיקה", "free": true },
+            { "id": 2, "slug": "charge-distribution", "file": "notes/02_charge_distribution.md", "title": "מטען והתפלגות מטען", "free": true },
+            { "id": 3, "slug": "electric-potential", "file": "notes/03_electric_potential.md", "title": "פוטנציאל חשמלי", "free": true },
+            { "id": 4, "slug": "capacitors", "file": "notes/04_capacitors.md", "title": "קבלים", "free": true },
+            { "id": 5, "slug": "dc-circuits", "file": "notes/05_dc_circuits.md", "title": "מעגלי DC", "free": true },
+            { "id": 6, "slug": "rc-circuits", "file": "notes/06_rc_circuits.md", "title": "מעגלי RC בזמן", "free": true },
+            { "id": 7, "slug": "complex-circuits", "file": "notes/07_complex_circuits.md", "title": "ניתוח מעגלים מורכבים", "free": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "statistics2",
+      "slug": "statistics-2",
+      "title": "סטטיסטיקה למדעי הפסיכולוגיה ב'",
+      "description": "סטטיסטיקה מתקדמת, מבחני השערות, רגרסיה",
+      "semester": "B",
+      "year": 1,
+      "category": "psychology",
+      "accentColor": "indigo",
+      "priceILS": 39,
+      "contentDir": "statistics2",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "physio-psychology",
+      "slug": "physiological-psychology",
+      "title": "פסיכולוגיה פיזיולוגית ב'",
+      "description": "בסיס ביולוגי של התנהגות, מערכת העצבים",
+      "semester": "B",
+      "year": 1,
+      "category": "psychology",
+      "accentColor": "cyan",
+      "priceILS": 39,
+      "contentDir": "physio-psychology",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "personality",
+      "slug": "personality-theory",
+      "title": "מבוא לתורת האישיות",
+      "description": "גישות תיאורטיות לחקר האישיות",
+      "semester": "B",
+      "year": 1,
+      "category": "psychology",
+      "accentColor": "cyan",
+      "priceILS": 39,
+      "contentDir": "personality",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "developmental-psychology",
+      "slug": "developmental-psychology",
+      "title": "מבוא לפסיכולוגיה התפתחותית",
+      "description": "התפתחות קוגניטיבית, רגשית וחברתית",
+      "semester": "B",
+      "year": 1,
+      "category": "psychology",
+      "accentColor": "cyan",
+      "priceILS": 39,
+      "contentDir": "developmental-psychology",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "cell-biology",
+      "slug": "cell-biology",
+      "title": "מבוא לביולוגיה של התא למדעי המוח",
+      "description": "מבנה התא, חלבונים, DNA, חלוקת תאים",
+      "semester": "B",
+      "year": 1,
+      "category": "neuroscience",
+      "accentColor": "emerald",
+      "priceILS": 39,
+      "contentDir": "cell-biology",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "software1",
+      "slug": "software-1",
+      "title": "תוכנה 1",
+      "description": "Java, OOP, תכנות מונחה עצמים",
+      "semester": "A",
+      "year": 2,
+      "category": "cs-math",
+      "accentColor": "purple",
+      "priceILS": 49,
+      "contentDir": "software1",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "data-structures",
+      "slug": "data-structures",
+      "title": "מבני נתונים",
+      "description": "עצים, ערימות, גרפים, טבלאות גיבוב, מיון",
+      "semester": "A",
+      "year": 2,
+      "category": "cs-math",
+      "accentColor": "purple",
+      "priceILS": 49,
+      "contentDir": "data-structures",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "probability",
+      "slug": "probability-statistics",
+      "title": "הסתברות וסטטיסטיקה (לדו-חוגי)",
+      "description": "הסתברות, משתנים מקריים, התפלגויות, אמידה",
+      "semester": "A",
+      "year": 2,
+      "category": "cs-math",
+      "accentColor": "teal",
+      "priceILS": 49,
+      "contentDir": "probability",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "research-methods",
+      "slug": "research-methods",
+      "title": "שיטות מחקר א'",
+      "description": "תכנון מחקר, מדגמים, ניסויים, תוקף",
+      "semester": "A",
+      "year": 2,
+      "category": "psychology",
+      "accentColor": "indigo",
+      "priceILS": 39,
+      "contentDir": "research-methods",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "anova",
+      "slug": "anova",
+      "title": "ניתוח שונות ויישומי מחשב",
+      "description": "ANOVA, ניתוח שונות חד וד-כיווני, SPSS",
+      "semester": "A",
+      "year": 2,
+      "category": "psychology",
+      "accentColor": "indigo",
+      "priceILS": 39,
+      "contentDir": "anova",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "social-psychology",
+      "slug": "social-psychology",
+      "title": "Social Psychology: Personal and Interpersonal",
+      "description": "עמדות, שכנוע, קונפורמיות, אטריבוציה",
+      "semester": "A",
+      "year": 2,
+      "category": "psychology",
+      "accentColor": "cyan",
+      "priceILS": 39,
+      "contentDir": "social-psychology",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "cognitive-psychology",
+      "slug": "cognitive-psychology",
+      "title": "מבוא לפסיכולוגיה קוגניטיבית",
+      "description": "תפיסה, קשב, זיכרון, שפה, חשיבה",
+      "semester": "A",
+      "year": 2,
+      "category": "psychology",
+      "accentColor": "cyan",
+      "priceILS": 39,
+      "contentDir": "cognitive-psychology",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "intro-physiology",
+      "slug": "intro-physiology",
+      "title": "מבוא לפיזיולוגיה",
+      "description": "מערכות גוף, הומאוסטזיס, פיזיולוגיה של תאים",
+      "semester": "A",
+      "year": 2,
+      "category": "neuroscience",
+      "accentColor": "emerald",
+      "priceILS": 39,
+      "contentDir": "intro-physiology",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "brain-structure",
+      "slug": "brain-structure",
+      "title": "מבנה המוח",
+      "description": "נוירואנטומיה, מעבדה, חתכים היסטולוגיים",
+      "semester": "A",
+      "year": 2,
+      "category": "neuroscience",
+      "accentColor": "emerald",
+      "priceILS": 39,
+      "contentDir": "brain-structure",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "computer-architecture",
+      "slug": "computer-architecture",
+      "title": "מבנה מחשבים",
+      "description": "שערים לוגיים, מעבד, זיכרון, אסמבלי",
+      "semester": "B",
+      "year": 2,
+      "category": "cs-math",
+      "accentColor": "purple",
+      "priceILS": 49,
+      "contentDir": "computer-architecture",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "algorithms",
+      "slug": "algorithms",
+      "title": "אלגוריתמים",
+      "description": "תכנון דינמי, חמדנות, גרפים, NP-שלמות",
+      "semester": "B",
+      "year": 2,
+      "category": "cs-math",
+      "accentColor": "purple",
+      "priceILS": 49,
+      "contentDir": "algorithms",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "software-project",
+      "slug": "software-project",
+      "title": "Software Project",
+      "description": "פרויקט תוכנה מעשי, עבודת צוות",
+      "semester": "B",
+      "year": 2,
+      "category": "cs-math",
+      "accentColor": "teal",
+      "priceILS": 49,
+      "contentDir": "software-project",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "computational-models",
+      "slug": "computational-models",
+      "title": "מודלים חישוביים",
+      "description": "אוטומטים, שפות פורמליות, חישוביות, טיורינג",
+      "semester": "B",
+      "year": 2,
+      "category": "cs-math",
+      "accentColor": "teal",
+      "priceILS": 49,
+      "contentDir": "computational-models",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "experimental-psychology",
+      "slug": "experimental-psychology",
+      "title": "פסיכולוגיה ניסויית",
+      "description": "התנסות במחקר וכתיבה מדעית",
+      "semester": "B",
+      "year": 2,
+      "category": "psychology",
+      "accentColor": "indigo",
+      "priceILS": 39,
+      "contentDir": "experimental-psychology",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "perception-psychophysics",
+      "slug": "perception-psychophysics",
+      "title": "תפיסה ופסיכופיזיקה",
+      "description": "ראייה, שמיעה, סיפי תפיסה, פסיכופיזיקה",
+      "semester": "B",
+      "year": 2,
+      "category": "psychology",
+      "accentColor": "cyan",
+      "priceILS": 39,
+      "contentDir": "perception-psychophysics",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "neurobiology",
+      "slug": "neurobiology",
+      "title": "נוירוביולוגיה",
+      "description": "מערכות חושיות, מוטוריות, נוירוטרנסמיטרים",
+      "semester": "B",
+      "year": 2,
+      "category": "neuroscience",
+      "accentColor": "emerald",
+      "priceILS": 39,
+      "contentDir": "neurobiology",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "operating-systems",
+      "slug": "operating-systems",
+      "title": "מערכות הפעלה",
+      "description": "תהליכים, חוטים, זיכרון וירטואלי, מערכות קבצים",
+      "semester": "A",
+      "year": 3,
+      "category": "cs-math",
+      "accentColor": "purple",
+      "priceILS": 49,
+      "contentDir": "operating-systems",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "computational-models-psychology",
+      "slug": "computational-models-psychology",
+      "title": "מודלים חישוביים בפסיכולוגיה",
+      "description": "מידול חישובי של תהליכים קוגניטיביים",
+      "semester": "A",
+      "year": 3,
+      "category": "psychology",
+      "accentColor": "indigo",
+      "priceILS": 39,
+      "contentDir": "computational-models-psychology",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "learning-conditioning",
+      "slug": "learning-conditioning",
+      "title": "למידה - התניה קלאסית ואופרנטית",
+      "description": "תופעות בסיסיות וניתוח תאורטי",
+      "semester": "A",
+      "year": 3,
+      "category": "psychology",
+      "accentColor": "cyan",
+      "priceILS": 39,
+      "contentDir": "learning-conditioning",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "intro-psychopathology",
+      "slug": "intro-psychopathology",
+      "title": "מבוא לפסיכופתולוגיה",
+      "description": "הפרעות נפשיות, אבחון, DSM, טיפול",
+      "semester": "A",
+      "year": 3,
+      "category": "psychology",
+      "accentColor": "cyan",
+      "priceILS": 39,
+      "contentDir": "intro-psychopathology",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "systems-neurobiology",
+      "slug": "systems-neurobiology",
+      "title": "Introduction to Systems Neurobiology",
+      "description": "מערכות עצביות, מעגלים נוירונליים",
+      "semester": "A",
+      "year": 3,
+      "category": "neuroscience",
+      "accentColor": "emerald",
+      "priceILS": 39,
+      "contentDir": "systems-neurobiology",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "social-psychology-advanced",
+      "slug": "social-psychology-advanced",
+      "title": "פסיכולוגיה חברתית: מהבינאישי לקבוצתי",
+      "description": "דינמיקה קבוצתית, קונפליקטים, זהות חברתית",
+      "semester": "B",
+      "year": 3,
+      "category": "psychology",
+      "accentColor": "cyan",
+      "priceILS": 39,
+      "contentDir": "social-psychology-advanced",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "history-philosophy-psychology",
+      "slug": "history-philosophy-psychology",
+      "title": "מקורות היסטוריים ופילוסופיים של מדעי הפסיכולוגיה",
+      "description": "היסטוריה של הפסיכולוגיה, זרמים פילוסופיים",
+      "semester": "B",
+      "year": 3,
+      "category": "psychology",
+      "accentColor": "indigo",
+      "priceILS": 39,
+      "contentDir": "history-philosophy-psychology",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "computational-brain-workshop",
+      "slug": "computational-brain-workshop",
+      "title": "Workshop on Computational Methods in Brain Research",
+      "description": "שיטות חישוביות לחקר המוח, סדנה מעשית",
+      "semester": "B",
+      "year": 3,
+      "category": "cs-math",
+      "accentColor": "teal",
+      "priceILS": 49,
+      "contentDir": "computational-brain-workshop",
+      "downloadables": [],
+      "sections": []
+    },
+    {
+      "id": "intro-computational-learning",
+      "slug": "intro-computational-learning",
+      "title": "מבוא ללמידה חישובית",
+      "description": "למידת מכונה, PAC, VC dimension",
+      "semester": "B",
+      "year": 3,
+      "category": "cs-math",
+      "accentColor": "purple",
+      "priceILS": 49,
+      "contentDir": "intro-computational-learning",
+      "downloadables": [],
+      "sections": []
+    }
+  ]
+}

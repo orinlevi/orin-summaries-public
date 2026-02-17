@@ -1,14 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { signToken, verifyToken, COOKIE_NAME, SEMESTER_MAX_AGE } from "@/lib/auth";
+import { rateLimit } from "@/lib/rate-limit";
 
 /**
  * POST /api/auth/redeem-coupon
  * Body: { "code": "COUPONCODE", "email": "friend@example.com" }
  *
- * Validates coupon, creates a purchase record, and signs the user in.
+ * Validates coupon (Postgres), creates a purchase record (Postgres),
+ * stores session (Redis), and signs the user in.
  */
 export async function POST(request: NextRequest) {
   try {
+    // Rate limit: 5 attempts per minute (prevent brute-force on coupons)
+    const limited = await rateLimit(request, { limit: 5, windowMs: 60_000 });
+    if (limited) return limited;
+
     const body = await request.json().catch(() => null);
     const code: string | undefined = body?.code?.trim();
     const email: string | undefined = body?.email?.trim().toLowerCase();
@@ -17,8 +23,17 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "missing code or email" }, { status: 400 });
     }
 
-    const { getCoupon, incrementCouponUses, storePurchase, storeSession } =
-      await import("@/lib/kv");
+    // Input validation
+    if (code.length > 30 || !/^[A-Za-z0-9-]+$/.test(code)) {
+      return NextResponse.json({ error: "invalid code format" }, { status: 400 });
+    }
+    if (email.length > 100 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json({ error: "invalid email format" }, { status: 400 });
+    }
+
+    // Coupon + purchase operations from Postgres
+    const { getCoupon, incrementCouponUses, storePurchase } =
+      await import("@/lib/db/queries");
 
     const coupon = await getCoupon(code);
     if (!coupon) {
@@ -40,7 +55,7 @@ export async function POST(request: NextRequest) {
       email,
       orderId: `coupon:${code.toUpperCase()}`,
       productId: "coupon",
-      createdAt: new Date().toISOString(),
+      source: "coupon",
       expiresAt: new Date(Date.now() + SEMESTER_MAX_AGE * 1000).toISOString(),
     });
 
@@ -48,11 +63,15 @@ export async function POST(request: NextRequest) {
     const token = signToken(email);
     const response = NextResponse.json({ ok: true });
 
+    // Session in Redis for single-device enforcement
     try {
       const payload = verifyToken(token);
-      if (payload) await storeSession(email, payload.iat);
+      if (payload) {
+        const { storeSession } = await import("@/lib/kv");
+        await storeSession(email, payload.iat);
+      }
     } catch {
-      // KV session tracking unavailable
+      // Redis session tracking unavailable
     }
 
     response.cookies.set(COOKIE_NAME, token, {

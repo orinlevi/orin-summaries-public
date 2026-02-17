@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { signToken, verifyToken, COOKIE_NAME, SEMESTER_MAX_AGE, hasPrivilegedAccess } from "@/lib/auth";
+import { rateLimit } from "@/lib/rate-limit";
 
 /**
  * Verify a Google ID token using Google's tokeninfo endpoint.
@@ -40,15 +41,19 @@ async function verifyGoogleToken(idToken: string): Promise<string | null> {
  * POST /api/auth/google
  * Body: { "credential": "<google-id-token>" }
  *
- * Verifies Google ID token, checks purchase/admin status, sets cookie.
+ * Verifies Google ID token, checks purchase/admin status via Postgres, sets cookie.
  */
 export async function POST(request: NextRequest) {
   try {
+    // Rate limit: 10 attempts per minute
+    const limited = await rateLimit(request, { limit: 10, windowMs: 60_000 });
+    if (limited) return limited;
+
     const body = await request.json().catch(() => null);
     const credential: string | undefined = body?.credential;
 
-    if (!credential) {
-      return NextResponse.json({ error: "missing credential" }, { status: 400 });
+    if (!credential || typeof credential !== "string" || credential.length > 4096) {
+      return NextResponse.json({ error: "missing or invalid credential" }, { status: 400 });
     }
 
     const email = await verifyGoogleToken(credential);
@@ -58,10 +63,10 @@ export async function POST(request: NextRequest) {
 
     const normalizedEmail = email.trim().toLowerCase();
 
-    // Check access: admin/allowed skip KV, others need purchase
+    // Check access: admin/allowed skip DB check, others need purchase in Postgres
     if (!hasPrivilegedAccess(normalizedEmail)) {
       try {
-        const { hasPurchase } = await import("@/lib/kv");
+        const { hasPurchase } = await import("@/lib/db/queries");
         const purchased = await hasPurchase(normalizedEmail);
         if (!purchased) {
           return NextResponse.json({ error: "purchase_not_found" }, { status: 404 });
@@ -74,7 +79,7 @@ export async function POST(request: NextRequest) {
     const token = signToken(normalizedEmail);
     const response = NextResponse.json({ ok: true });
 
-    // Store session for single-device enforcement
+    // Store session in Redis for single-device enforcement
     try {
       const payload = verifyToken(token);
       if (payload) {
@@ -82,7 +87,15 @@ export async function POST(request: NextRequest) {
         await storeSession(normalizedEmail, payload.iat);
       }
     } catch {
-      // KV unavailable
+      // Redis unavailable
+    }
+
+    // Update last login timestamp in Postgres
+    try {
+      const { updateLastLogin } = await import("@/lib/db/queries");
+      await updateLastLogin(normalizedEmail);
+    } catch {
+      // Non-critical
     }
 
     response.cookies.set(COOKIE_NAME, token, {

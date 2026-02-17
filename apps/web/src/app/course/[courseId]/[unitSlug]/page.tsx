@@ -1,17 +1,21 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getCourseById, getUnitBySlug, getAdjacentUnits, getAllCourses } from "@/lib/courses";
+import { getCourseById, getUnitBySlug, getAdjacentUnits, getTauCourses } from "@/lib/courses";
 import { getUnitContent } from "@/lib/content";
 import { MarkdownRenderer } from "@/components/content/MarkdownRenderer";
+import { ContentErrorBoundary } from "@/components/content/ContentErrorBoundary";
 import { TableOfContents } from "@/components/content/TableOfContents";
 import { ProtectedContent } from "@/components/ProtectedContent";
+import { BackToTop } from "@/components/ui/BackToTop";
+import { UnitProgress } from "@/components/UnitProgress";
+import { CopyCodeButton } from "@/components/content/CopyCodeButton";
 
 interface Props {
   params: Promise<{ courseId: string; unitSlug: string }>;
 }
 
 export async function generateStaticParams() {
-  const courses = getAllCourses();
+  const courses = getTauCourses();
   const params: { courseId: string; unitSlug: string }[] = [];
   for (const course of courses) {
     for (const unit of course.units) {
@@ -50,31 +54,48 @@ export default async function UnitPage({ params }: Props) {
     notFound();
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "קורסים", item: "https://orin-summaries.vercel.app/" },
+      { "@type": "ListItem", position: 2, name: course.title, item: `https://orin-summaries.vercel.app/course/${course.id}` },
+      { "@type": "ListItem", position: 3, name: unit.title },
+    ],
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="flex gap-8">
         {/* Main content */}
         <main className="flex-1 min-w-0 max-w-4xl">
           <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-            <Link href="/" className="hover:text-gray-300">
+            <Link href="/" className="hover:text-gray-700 dark:hover:text-gray-300">
               קורסים
             </Link>
             <span>/</span>
-            <Link href={`/course/${course.id}`} className="hover:text-gray-300">
+            <Link href={`/course/${course.id}`} className="hover:text-gray-700 dark:hover:text-gray-300">
               {course.title}
             </Link>
             <span>/</span>
-            <span className="text-gray-300">{unit.title}</span>
+            <span className="text-gray-700 dark:text-gray-300">{unit.title}</span>
           </nav>
 
           <ProtectedContent isFree={unit.free} courseName={course.title}>
-            <MarkdownRenderer content={content} courseId={course.id} currentFile={unit.file} />
+            <ContentErrorBoundary>
+              <MarkdownRenderer content={content} courseId={course.id} currentFile={unit.file} />
+            </ContentErrorBoundary>
+            <CopyCodeButton />
 
-            <nav className="flex justify-between mt-16 pt-8 border-t border-gray-800">
+            <nav className="flex justify-between mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
               {prev ? (
                 <Link
                   href={`/course/${course.id}/${prev.slug}`}
-                  className="text-gray-400 hover:text-gray-200"
+                  className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
                 >
                   &rarr; {prev.title}
                 </Link>
@@ -84,7 +105,7 @@ export default async function UnitPage({ params }: Props) {
               {next ? (
                 <Link
                   href={`/course/${course.id}/${next.slug}`}
-                  className="text-gray-400 hover:text-gray-200"
+                  className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
                 >
                   {next.title} &larr;
                 </Link>
@@ -92,6 +113,13 @@ export default async function UnitPage({ params }: Props) {
                 <div />
               )}
             </nav>
+
+            <UnitProgress
+              courseId={course.id}
+              unitId={unit.id}
+              unitIndex={course.units.findIndex((u) => u.slug === unitSlug)}
+              totalUnits={course.units.length}
+            />
           </ProtectedContent>
         </main>
 
@@ -100,6 +128,7 @@ export default async function UnitPage({ params }: Props) {
           <TableOfContents markdown={content} />
         </aside>
       </div>
+      <BackToTop />
     </div>
   );
 }

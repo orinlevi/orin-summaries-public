@@ -68,11 +68,11 @@ export function TableOfContents({ markdown }: { markdown: string }) {
   if (headings.length < 3) return null;
 
   return (
-    <nav className="hidden xl:block sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto text-sm">
+    <nav aria-label="תוכן עניינים" className="hidden xl:block sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto text-sm">
       <h3 className="text-gray-500 font-semibold text-xs uppercase tracking-wider mb-3">
         תוכן עניינים
       </h3>
-      <ul className="space-y-1.5 border-r border-gray-800 pr-3">
+      <ul className="space-y-1.5 border-r border-gray-200 dark:border-gray-800 pr-3">
         {headings.map(({ id, text, level }) => (
           <li key={id}>
             <a
@@ -86,8 +86,8 @@ export function TableOfContents({ markdown }: { markdown: string }) {
                 level === 3 ? "pr-3 text-xs" : "text-xs"
               } ${
                 activeId === id
-                  ? "text-purple-400 border-r-2 border-purple-400 -mr-[calc(0.75rem+1px)] pr-[calc(0.75rem-1px)]"
-                  : "text-gray-500 hover:text-gray-300"
+                  ? "text-purple-600 dark:text-purple-400 border-r-2 border-purple-600 dark:border-purple-400 -mr-[calc(0.75rem+1px)] pr-[calc(0.75rem-1px)]"
+                  : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
               }`}
             >
               {text}

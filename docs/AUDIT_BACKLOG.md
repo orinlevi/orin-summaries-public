@@ -32,11 +32,11 @@ Issues that affect what users see on the site.
 ## P1 - Security
 Important for a site that handles payments.
 
-### Rate Limiting
-- No rate limiting on API routes
-- Someone could brute-force coupon codes or spam login attempts
-- **Fix**: add rate limiting middleware (e.g. `@upstash/ratelimit` with the existing KV)
-- **Branch**: `feature/rate-limiting`
+### ~~Rate Limiting~~ ✅ DONE (Feb 2026)
+- ~~No rate limiting on API routes~~
+- **Implemented**: sliding-window rate limiter using Redis sorted sets (`src/lib/rate-limit.ts`)
+- 10 req/min on auth routes, 5 req/min on coupon redemption
+- **Branch**: was `feature/rate-limiting`, merged to main
 
 ### Security Headers
 - Missing CSP (Content Security Policy), X-Frame-Options in `next.config`
@@ -104,9 +104,12 @@ Important for a site that handles payments.
 - **Fix**: remove or replace with structured logging
 - **Branch**: `fix/console-logs`
 
-### Tests
-- No tests exist
-- **Branch**: `feature/tests`
+### ~~Tests~~ ✅ DONE (Feb 2026)
+- ~~No tests exist~~
+- **Implemented**: Playwright E2E (34 smoke tests) + Vitest for unit tests
+- Test files: `apps/web/e2e/` (5 spec files)
+- Run: `npm run test:e2e`
+- **Branch**: was `feature/e2e-tests`, merged to main
 
 ---
 

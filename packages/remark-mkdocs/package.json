@@ -6,7 +6,7 @@
   "types": "./src/index.ts",
   "scripts": {
     "build": "echo 'No build step - consumed as TypeScript by Next.js'",
-    "lint": "echo 'Lint placeholder'"
+    "lint": "tsc --noEmit"
   },
   "dependencies": {
     "unified": "^11.0.0",

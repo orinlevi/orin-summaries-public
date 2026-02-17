@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { signToken, COOKIE_NAME, SEMESTER_MAX_AGE } from "@/lib/auth";
-import { storePurchase, hasPurchase } from "@/lib/kv";
+import { storePurchase, hasPurchase } from "@/lib/db/queries";
+import { rateLimit } from "@/lib/rate-limit";
 
 const LS_API_KEY = process.env.LEMONSQUEEZY_API_KEY || "";
 
@@ -8,15 +9,19 @@ const LS_API_KEY = process.env.LEMONSQUEEZY_API_KEY || "";
  * GET /api/auth/activate?order_id=<lemon-squeezy-order-id>
  *
  * Called after a successful Lemon Squeezy checkout.
- * Verifies the order via LS API, stores the purchase, sets a signed cookie,
+ * Verifies the order via LS API, stores the purchase in Postgres, sets a signed cookie,
  * then redirects to the homepage.
  */
 export async function GET(request: NextRequest) {
+  // Rate limit: 10 attempts per minute (prevent order ID enumeration)
+  const limited = await rateLimit(request, { limit: 10, windowMs: 60_000 });
+  if (limited) return limited;
+
   const orderId = request.nextUrl.searchParams.get("order_id");
 
-  if (!orderId) {
+  if (!orderId || !/^\d+$/.test(orderId)) {
     return NextResponse.json(
-      { error: "missing order_id" },
+      { error: "missing or invalid order_id" },
       { status: 400 }
     );
   }
@@ -52,7 +57,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  /* ── store purchase if webhook hasn't already ────────────── */
+  /* ── store purchase in Postgres if webhook hasn't already ── */
   if (!(await hasPurchase(email))) {
     await storePurchase({
       email,
@@ -60,7 +65,7 @@ export async function GET(request: NextRequest) {
       productId: String(
         json.data?.relationships?.["order-items"]?.data?.[0]?.id ?? ""
       ),
-      createdAt: new Date().toISOString(),
+      source: "lemon-squeezy",
       expiresAt: new Date(
         Date.now() + 180 * 24 * 60 * 60 * 1000
       ).toISOString(),

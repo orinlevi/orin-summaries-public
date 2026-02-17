@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getCourseById, getAllCourses } from "@/lib/courses";
+import { getCourseById, getTauCourses } from "@/lib/courses";
 import { AdminDownloads } from "@/components/AdminDownloads";
+import { CourseProgressProvider, CourseProgressBar } from "@/components/CourseProgress";
+import { CourseUnitFilter } from "@/components/CourseUnitFilter";
 
 /** Wrap a public asset path with the download API so the file is served
  *  through the auth-checked route instead of being publicly accessible. */
@@ -14,7 +16,7 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return getAllCourses().map((course) => ({ courseId: course.id }));
+  return getTauCourses().map((course) => ({ courseId: course.id }));
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -44,23 +46,26 @@ export default async function CoursePage({ params }: Props) {
     <main className="max-w-4xl mx-auto px-4 py-12">
       <Link
         href="/"
-        className="text-gray-500 hover:text-gray-300 text-sm mb-8 inline-block"
+        className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-sm mb-8 inline-block"
       >
         &larr; חזרה לקורסים
       </Link>
 
       <header className="mb-12">
-        <h1 className="text-3xl font-bold mb-2">{course.title}</h1>
-        <p className="text-gray-400">{course.description}</p>
-        <p className="text-gray-500 text-sm mt-2">
-          {totalItems} פריטים | {freeCount} חינם
+        <h1 className="text-3xl font-bold mb-2 text-gray-900 dark:text-gray-100">{course.title}</h1>
+        <p className="text-gray-500 dark:text-gray-400">{course.description}</p>
+        <p className="text-gray-400 dark:text-gray-500 text-sm mt-2">
+          {totalItems} פריטים
         </p>
       </header>
 
+      <CourseProgressProvider courseId={course.id}>
+        <CourseProgressBar totalUnits={totalItems} />
+
       {/* קבצים להורדה */}
       {(publicDownloadables.length > 0 || adminDownloadables.length > 0) && (
-        <div className="mb-8 p-4 bg-gray-900 rounded-lg border border-gray-800">
-          <h2 className="text-lg font-semibold text-gray-300 mb-3">
+        <div className="mb-8 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
+          <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">
             &#128196; קבצים להורדה
           </h2>
           <div className="flex flex-wrap gap-3">
@@ -69,12 +74,12 @@ export default async function CoursePage({ params }: Props) {
                 key={dl.file}
                 href={dl.free ? dl.file : downloadUrl(dl.file)}
                 download
-                className="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg text-sm transition-colors"
+                className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition-colors"
               >
                 {dl.title}
                 {dl.free && (
-                  <span className="text-xs bg-green-900/50 text-green-400 px-1.5 py-0.5 rounded">
-                    חינם
+                  <span className="text-xs bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-400 px-1.5 py-0.5 rounded">
+                    free
                   </span>
                 )}
               </a>
@@ -86,22 +91,22 @@ export default async function CoursePage({ params }: Props) {
 
       {/* מחברות Jupyter */}
       {course.notebooks.length > 0 && (
-        <div className="mb-8 p-4 bg-gray-900 rounded-lg border border-indigo-900/50">
-          <h2 className="text-lg font-semibold text-gray-300 mb-3">
+        <div className="mb-8 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg border border-indigo-200 dark:border-indigo-900/50">
+          <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">
             &#128211; מחברות Jupyter
           </h2>
           <div className="space-y-2">
             {course.notebooks.map((nb) => (
               <div
                 key={nb.file}
-                className="flex items-center justify-between bg-gray-800/50 rounded-lg p-3"
+                className="flex items-center justify-between bg-gray-100 dark:bg-gray-800/50 rounded-lg p-3"
               >
-                <span className="text-gray-300 text-sm">{nb.title}</span>
+                <span className="text-gray-700 dark:text-gray-300 text-sm">{nb.title}</span>
                 <div className="flex items-center gap-2">
                   <a
                     href={downloadUrl(nb.file)}
                     download
-                    className="text-xs bg-gray-700 hover:bg-gray-600 text-gray-300 px-3 py-1.5 rounded transition-colors"
+                    className="text-xs bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 px-3 py-1.5 rounded transition-colors"
                   >
                     &#11015; הורדה
                   </a>
@@ -109,7 +114,7 @@ export default async function CoursePage({ params }: Props) {
                     href={nb.colab}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs bg-indigo-900/50 hover:bg-indigo-800/50 text-indigo-300 px-3 py-1.5 rounded transition-colors"
+                    className="text-xs bg-indigo-100 dark:bg-indigo-900/50 hover:bg-indigo-200 dark:hover:bg-indigo-800/50 text-indigo-700 dark:text-indigo-300 px-3 py-1.5 rounded transition-colors"
                   >
                     &#9654; Colab
                   </a>
@@ -122,8 +127,8 @@ export default async function CoursePage({ params }: Props) {
 
       {/* קבצי קוד */}
       {course.codeFiles.length > 0 && (
-        <div className="mb-10 p-4 bg-gray-900 rounded-lg border border-emerald-900/50">
-          <h2 className="text-lg font-semibold text-gray-300 mb-3">
+        <div className="mb-10 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg border border-emerald-200 dark:border-emerald-900/50">
+          <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">
             &#128187; קבצי Python
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -132,9 +137,9 @@ export default async function CoursePage({ params }: Props) {
                 key={cf.file}
                 href={downloadUrl(cf.file)}
                 download
-                className="inline-flex items-center gap-1.5 bg-gray-800/50 hover:bg-gray-700/50 text-gray-400 hover:text-gray-300 px-3 py-1.5 rounded text-xs transition-colors"
+                className="inline-flex items-center gap-1.5 bg-gray-100 dark:bg-gray-800/50 hover:bg-gray-200 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-300 px-3 py-1.5 rounded text-xs transition-colors"
               >
-                <span className="text-emerald-500 font-mono">.py</span>
+                <span className="text-emerald-600 dark:text-emerald-500 font-mono">.py</span>
                 {cf.title}
               </a>
             ))}
@@ -143,40 +148,19 @@ export default async function CoursePage({ params }: Props) {
       )}
 
       {/* סיכומים ויחידות */}
-      <div className="space-y-10">
-        {course.sections.map((section) => (
-          <div key={section.name}>
-            {course.sections.length > 1 && (
-              <h2 className="text-lg font-semibold text-gray-300 mb-4 border-b border-gray-800 pb-2">
-                {section.name}
-              </h2>
-            )}
-            <div className="space-y-3">
-              {section.items.map((unit) => (
-                <Link
-                  key={unit.slug}
-                  href={`/course/${course.id}/${unit.slug}`}
-                  className="flex items-center justify-between bg-gray-900 rounded-lg p-4 hover:bg-gray-800 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-black/20"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-gray-600 font-mono text-sm w-8">
-                      {String(unit.id).padStart(2, "0")}
-                    </span>
-                    <span className="text-gray-200">{unit.title}</span>
-                  </div>
-                  {unit.free ? (
-                    <span className="text-xs bg-green-900/50 text-green-400 px-2 py-1 rounded">
-                      חינם
-                    </span>
-                  ) : (
-                    <span className="text-gray-600 text-sm">&#128274;</span>
-                  )}
-                </Link>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      <CourseUnitFilter
+        courseId={course.id}
+        sections={course.sections.map((s) => ({
+          name: s.name,
+          items: s.items.map((u) => ({
+            id: u.id,
+            slug: u.slug,
+            title: u.title,
+            free: u.free,
+          })),
+        }))}
+      />
+      </CourseProgressProvider>
     </main>
   );
 }

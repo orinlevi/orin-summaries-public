@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
     const maxUses: number = typeof body?.maxUses === "number" ? body.maxUses : 0;
     const expiresAt: string = body?.expiresAt || "";
 
-    const { createCoupon, getCoupon } = await import("@/lib/kv");
+    const { createCoupon, getCoupon } = await import("@/lib/db/queries");
 
     const existing = await getCoupon(code);
     if (existing) {
@@ -39,10 +39,7 @@ export async function POST(request: NextRequest) {
     await createCoupon({
       code: code.toUpperCase(),
       maxUses,
-      uses: 0,
-      redeemedBy: [],
-      expiresAt,
-      createdAt: new Date().toISOString(),
+      expiresAt: expiresAt || undefined,
       createdBy: payload.email,
     });
 

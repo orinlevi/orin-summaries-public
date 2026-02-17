@@ -39,10 +39,10 @@ export function AdminDownloads({ items }: AdminDownloadsProps) {
           key={dl.file}
           href={downloadUrl(dl.file)}
           download
-          className="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-gray-300 px-4 py-2 rounded-lg text-sm transition-colors border border-amber-900/30"
+          className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg text-sm transition-colors border border-amber-300/30 dark:border-amber-900/30"
         >
           {dl.title}
-          <span className="text-xs bg-amber-900/50 text-amber-400 px-1.5 py-0.5 rounded">
+          <span className="text-xs bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-400 px-1.5 py-0.5 rounded">
             admin
           </span>
         </a>

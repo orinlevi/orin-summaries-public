@@ -143,20 +143,20 @@ export default function AccessPage() {
     <main className="max-w-md mx-auto px-4 py-20">
       {/* Header */}
       <div className="text-center mb-10">
-        <h1 className="text-3xl font-bold mb-3">התחברות</h1>
-        <p className="text-gray-400 text-sm">
+        <h1 className="text-3xl font-bold mb-3 text-gray-900 dark:text-gray-100">התחברות</h1>
+        <p className="text-gray-500 dark:text-gray-400 text-sm">
           היכנסו כדי לגשת לתכנים שרכשתם
         </p>
       </div>
 
       {/* Google Sign-In */}
       <div className={googleReady ? "" : "overflow-hidden h-0 opacity-0"}>
-        <div className="bg-gray-900/50 rounded-xl p-6 border border-gray-800/60">
+        <div className="bg-gray-50 dark:bg-gray-900/50 rounded-xl p-6 border border-gray-200 dark:border-gray-800/60">
           <div className="flex justify-center" dir="ltr">
             <div ref={googleButtonRef} />
           </div>
           {googleLoading && (
-            <p className="text-gray-400 text-sm text-center mt-3 animate-pulse">
+            <p className="text-gray-500 dark:text-gray-400 text-sm text-center mt-3 animate-pulse">
               מאמת...
             </p>
           )}
@@ -165,16 +165,16 @@ export default function AccessPage() {
 
       {/* Error */}
       {error && (
-        <div className="mt-4 bg-red-950/30 border border-red-900/50 rounded-lg p-3">
-          <p className="text-red-400 text-sm text-center">{error}</p>
+        <div className="mt-4 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 rounded-lg p-3">
+          <p className="text-red-600 dark:text-red-400 text-sm text-center">{error}</p>
         </div>
       )}
 
       {/* Divider */}
       <div className="flex items-center gap-3 my-8">
-        <div className="flex-1 h-px bg-gray-800" />
-        <span className="text-gray-600 text-xs">אפשרויות נוספות</span>
-        <div className="flex-1 h-px bg-gray-800" />
+        <div className="flex-1 h-px bg-gray-200 dark:bg-gray-800" />
+        <span className="text-gray-400 dark:text-gray-600 text-xs">אפשרויות נוספות</span>
+        <div className="flex-1 h-px bg-gray-200 dark:bg-gray-800" />
       </div>
 
       {/* Coupon section */}
@@ -182,7 +182,7 @@ export default function AccessPage() {
         <button
           type="button"
           onClick={() => setCouponOpen(!couponOpen)}
-          className="w-full text-center text-gray-400 hover:text-gray-300 text-sm transition-colors py-2"
+          className="w-full text-center text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 text-sm transition-colors py-2"
         >
           {couponOpen ? "הסתר קוד קופון" : "יש לי קוד קופון"}
         </button>
@@ -196,7 +196,7 @@ export default function AccessPage() {
               onChange={(e) => setCouponEmail(e.target.value)}
               placeholder="your@email.com"
               dir="ltr"
-              className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors text-sm"
+              className="w-full bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors text-sm"
             />
             <input
               type="text"
@@ -205,12 +205,12 @@ export default function AccessPage() {
               onChange={(e) => setCouponCode(e.target.value)}
               placeholder="קוד קופון"
               dir="ltr"
-              className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-gray-200 placeholder-gray-500 focus:outline-none focus:border-emerald-500 transition-colors text-sm"
+              className="w-full bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-emerald-500 transition-colors text-sm"
             />
             <button
               type="submit"
               disabled={couponLoading}
-              className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:bg-gray-700 text-white font-medium py-3 rounded-lg transition-colors text-sm"
+              className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:bg-gray-300 dark:disabled:bg-gray-700 text-white font-medium py-3 rounded-lg transition-colors text-sm"
             >
               {couponLoading ? "בודק..." : "מימוש קופון"}
             </button>
@@ -219,9 +219,9 @@ export default function AccessPage() {
       </div>
 
       {/* Footer links */}
-      <p className="text-gray-600 text-xs text-center mt-10">
+      <p className="text-gray-400 dark:text-gray-600 text-xs text-center mt-10">
         עדיין לא רכשתם?{" "}
-        <a href="/" className="text-purple-400 hover:text-purple-300 underline">
+        <a href="/" className="text-purple-600 dark:text-purple-400 hover:text-purple-500 dark:hover:text-purple-300 underline">
           חזרה לדף הבית
         </a>
       </p>

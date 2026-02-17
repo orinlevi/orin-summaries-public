@@ -123,7 +123,7 @@ export function MarkdownRenderer({
   }
 
   return (
-    <article className="prose prose-invert max-w-none" dir="rtl">
+    <article className="prose dark:prose-invert max-w-none" dir="rtl">
       <MDXRemote
         source={processed}
         options={{

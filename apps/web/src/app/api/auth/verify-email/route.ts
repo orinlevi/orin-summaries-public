@@ -1,16 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { signToken, verifyToken, COOKIE_NAME, SEMESTER_MAX_AGE, hasPrivilegedAccess } from "@/lib/auth";
+import { rateLimit } from "@/lib/rate-limit";
 
 /**
  * POST /api/auth/verify-email
  * Body: { "email": "user@example.com" }
  *
  * Admins & allowed emails always get access.
- * Other users need a purchase record in KV.
- * Each login invalidates previous sessions (single-device enforcement).
+ * Other users need a purchase record in Postgres.
+ * Each login invalidates previous sessions (single-device enforcement via Redis).
  */
 export async function POST(request: NextRequest) {
   try {
+    // Rate limit: 10 attempts per minute (prevent email enumeration)
+    const limited = await rateLimit(request, { limit: 10, windowMs: 60_000 });
+    if (limited) return limited;
+
     const body = await request.json().catch(() => null);
     const email: string | undefined = body?.email?.trim().toLowerCase();
 
@@ -21,8 +26,7 @@ export async function POST(request: NextRequest) {
     // Admins and allowed emails always get in
     if (!hasPrivilegedAccess(email)) {
       try {
-        // Lazy-import KV only when needed (avoids crash if KV env vars are missing)
-        const { hasPurchase } = await import("@/lib/kv");
+        const { hasPurchase } = await import("@/lib/db/queries");
         const purchased = await hasPurchase(email);
         if (!purchased) {
           return NextResponse.json(
@@ -31,7 +35,7 @@ export async function POST(request: NextRequest) {
           );
         }
       } catch {
-        // KV not configured – non-admins cannot be verified
+        // DB not configured – non-admins cannot be verified
         return NextResponse.json(
           { error: "purchase_not_found" },
           { status: 404 }
@@ -42,7 +46,7 @@ export async function POST(request: NextRequest) {
     const token = signToken(email);
     const response = NextResponse.json({ ok: true });
 
-    // Store latest session in KV so previous sessions are invalidated
+    // Store latest session in Redis so previous sessions are invalidated
     try {
       const payload = verifyToken(token);
       if (payload) {
@@ -50,7 +54,15 @@ export async function POST(request: NextRequest) {
         await storeSession(email, payload.iat);
       }
     } catch {
-      // KV not available – skip session tracking (still allow login)
+      // Redis not available – skip session tracking (still allow login)
+    }
+
+    // Update last login timestamp in Postgres
+    try {
+      const { updateLastLogin } = await import("@/lib/db/queries");
+      await updateLastLogin(email);
+    } catch {
+      // Non-critical – don't block login
     }
 
     response.cookies.set(COOKIE_NAME, token, {

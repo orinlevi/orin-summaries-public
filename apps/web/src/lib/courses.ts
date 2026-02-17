@@ -42,6 +42,7 @@ export interface Course {
   category: string;
   accentColor: string;
   priceILS: number;
+  university: "tau" | "huji";
   contentDir: string;
   sections: Section[];
   downloadables: Downloadable[];
@@ -74,6 +75,7 @@ interface RawCourse {
   category: string;
   accentColor: string;
   priceILS: number;
+  university?: "tau" | "huji";
   contentDir: string;
   sections?: RawSection[];
   units?: RawUnit[];
@@ -104,7 +106,8 @@ function loadCourses(): Course[] {
     const downloadables: Downloadable[] = c.downloadables ?? [];
     const notebooks: Notebook[] = c.notebooks ?? [];
     const codeFiles: CodeFile[] = c.codeFiles ?? [];
-    return { ...c, sections, units, downloadables, notebooks, codeFiles };
+    const university = c.university || "tau";
+    return { ...c, university, sections, units, downloadables, notebooks, codeFiles };
   });
 }
 
@@ -116,6 +119,14 @@ function getCourses(): Course[] {
 
 export function getAllCourses(): Course[] {
   return getCourses();
+}
+
+export function getTauCourses(): Course[] {
+  return getCourses().filter((c) => c.university === "tau");
+}
+
+export function getHujiCourses(): Course[] {
+  return getCourses().filter((c) => c.university === "huji");
 }
 
 export function getCourseById(id: string): Course | null {

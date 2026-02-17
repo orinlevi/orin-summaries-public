@@ -6,8 +6,11 @@ const BASE_URL = "https://orin-summaries.vercel.app";
 export default function sitemap(): MetadataRoute.Sitemap {
   const courses = getAllCourses();
 
+  const coursePrefix = (c: { university: string }) =>
+    c.university === "huji" ? "huji" : "course";
+
   const coursePages = courses.map((c) => ({
-    url: `${BASE_URL}/course/${c.id}`,
+    url: `${BASE_URL}/${coursePrefix(c)}/${c.id}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.8,
@@ -15,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const unitPages = courses.flatMap((c) =>
     c.units.map((u) => ({
-      url: `${BASE_URL}/course/${c.id}/${u.slug}`,
+      url: `${BASE_URL}/${coursePrefix(c)}/${c.id}/${u.slug}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.6,
@@ -28,6 +31,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1,
+    },
+    {
+      url: `${BASE_URL}/huji`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     ...coursePages,
     ...unitPages,

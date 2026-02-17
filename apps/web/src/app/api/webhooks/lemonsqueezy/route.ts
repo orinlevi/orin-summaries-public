@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
-import { storePurchase } from "@/lib/kv";
+import { storePurchase } from "@/lib/db/queries";
 
 const WEBHOOK_SECRET = process.env.LEMONSQUEEZY_WEBHOOK_SECRET || "";
 
@@ -8,7 +8,7 @@ const WEBHOOK_SECRET = process.env.LEMONSQUEEZY_WEBHOOK_SECRET || "";
  * POST /api/webhooks/lemonsqueezy
  *
  * Receives Lemon Squeezy webhook events.
- * Verifies HMAC-SHA256 signature, then stores the purchase in KV.
+ * Verifies HMAC-SHA256 signature, then stores the purchase in Postgres.
  */
 export async function POST(request: Request) {
   /* ── read raw body for signature verification ────────────── */
@@ -60,13 +60,13 @@ export async function POST(request: Request) {
       email,
       orderId,
       productId,
-      createdAt: new Date().toISOString(),
+      source: "lemon-squeezy",
       expiresAt: new Date(
         Date.now() + 180 * 24 * 60 * 60 * 1000
       ).toISOString(),
     });
   } catch (err) {
-    console.error("Failed to store purchase in KV:", err);
+    console.error("Failed to store purchase in Postgres:", err);
     return NextResponse.json({ error: "storage failed" }, { status: 500 });
   }
 

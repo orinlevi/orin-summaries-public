@@ -36,5 +36,27 @@ coverage
 *.tsbuildinfo
 next-env.d.ts
 
+# Generated search index
+apps/web/public/search-index.json
+
 # Vercel
 .vercel
+
+# LaTeX artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.xdv
+
+# Python
+__pycache__
+*.pyc
+.venv
+venv
+
+# OS
+Thumbs.db

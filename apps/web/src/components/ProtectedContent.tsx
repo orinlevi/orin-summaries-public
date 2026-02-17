@@ -1,7 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { PaywallGate } from "./PaywallGate";
+
+const loadingQuips = [
+  "Thinking...",
+  "Loading stuff...",
+  "Almost there...",
+  "Brewing coffee...",
+  "Summoning knowledge...",
+  "Convincing the server...",
+  "One sec, not boring...",
+];
 
 interface Props {
   isFree: boolean;
@@ -14,6 +24,11 @@ export function ProtectedContent({ isFree, courseName, children }: Props) {
     isFree ? "granted" : "loading"
   );
 
+  const loadingText = useMemo(
+    () => loadingQuips[Math.floor(Math.random() * loadingQuips.length)],
+    []
+  );
+
   useEffect(() => {
     if (isFree) return;
 
@@ -24,8 +39,8 @@ export function ProtectedContent({ isFree, courseName, children }: Props) {
 
   if (status === "loading") {
     return (
-      <div className="py-16 text-center text-gray-500 animate-pulse">
-        טוען...
+      <div className="py-16 text-center text-gray-400 dark:text-gray-600 animate-pulse text-sm">
+        {loadingText}
       </div>
     );
   }

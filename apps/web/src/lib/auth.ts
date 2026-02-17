@@ -53,6 +53,8 @@ export function signToken(email: string): string {
 
 /** Verify and decode a signed token. Returns null if invalid or expired. */
 export function verifyToken(token: string): AccessPayload | null {
+  // Reject absurdly long tokens early (prevent DoS)
+  if (!token || token.length > 1024) return null;
   const parts = token.split(".");
   if (parts.length !== 2) return null;
   const [data, sig] = parts;
@@ -60,7 +62,11 @@ export function verifyToken(token: string): AccessPayload | null {
     .createHmac("sha256", getCookieSecret())
     .update(data!)
     .digest("base64url");
-  if (sig !== expected) return null;
+  // Timing-safe comparison to prevent timing attacks
+  if (sig!.length !== expected.length) return null;
+  const sigBuf = Buffer.from(sig!, "utf8");
+  const expBuf = Buffer.from(expected, "utf8");
+  if (!crypto.timingSafeEqual(sigBuf, expBuf)) return null;
   try {
     const payload: AccessPayload = JSON.parse(
       Buffer.from(data!, "base64url").toString()

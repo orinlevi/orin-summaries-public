@@ -3,7 +3,7 @@
  *
  * 5 tables:
  * - users: central user record (email, timestamps)
- * - purchases: payment records (Lemon Squeezy or coupon)
+ * - purchases: payment records (Paddle or coupon)
  * - progress: unit completion tracking per course
  * - coupons: coupon codes with expiry and limits
  * - coupon_redemptions: who used which coupon
@@ -37,7 +37,7 @@ export const purchases = pgTable("purchases", {
     .notNull(),
   orderId: text("order_id").notNull(),
   productId: text("product_id").notNull().default("semester"),
-  source: text("source").notNull().default("lemon-squeezy"), // 'lemon-squeezy' | 'coupon'
+  source: text("source").notNull().default("paddle"), // 'paddle' | 'coupon'
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
 });

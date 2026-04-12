@@ -32,7 +32,7 @@ npx playwright test e2e/search.spec.ts
 ## What's NOT tested (and why)
 
 - **Auth flow** — Google Sign-In needs real credentials + Vercel KV isn't available locally
-- **Payment** — Lemon Squeezy checkout is an external embed
+- **Payment** — Paddle checkout is an external overlay
 - **Mobile layout** — worth adding later, not critical yet
 - **Admin endpoints** — require auth tokens
 

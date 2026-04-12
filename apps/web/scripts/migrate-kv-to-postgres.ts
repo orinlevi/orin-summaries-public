@@ -94,7 +94,7 @@ async function migratePurchases() {
           userId,
           orderId: record.orderId,
           productId: record.productId || "semester",
-          source: record.orderId.startsWith("coupon:") ? "coupon" : "lemon-squeezy",
+          source: record.orderId.startsWith("coupon:") ? "coupon" : "paddle",
           createdAt: record.createdAt ? new Date(record.createdAt) : undefined,
           expiresAt: new Date(record.expiresAt),
         })

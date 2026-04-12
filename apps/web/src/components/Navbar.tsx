@@ -1,11 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
-const CHECKOUT_URL =
-  "https://orin-summaries.lemonsqueezy.com/checkout/buy/32690964-5df0-44e3-997d-d7ef3e719486?embed=1";
-
 export function Navbar() {
+  function handleCheckout() {
+    const priceId = process.env.NEXT_PUBLIC_PADDLE_PRICE_ID;
+    if (!priceId || !window.Paddle) {
+      window.location.href = "/access";
+      return;
+    }
+    window.Paddle.Checkout.open({
+      items: [{ priceId, quantity: 1 }],
+    });
+  }
+
   return (
     <nav className="sticky top-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800/60">
       <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
@@ -32,12 +42,12 @@ export function Navbar() {
           >
             התחברות
           </Link>
-          <a
-            href={CHECKOUT_URL}
-            className="lemonsqueezy-button bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium px-4 py-1.5 rounded-lg transition-colors"
+          <button
+            onClick={handleCheckout}
+            className="bg-purple-600 hover:bg-purple-500 text-white text-sm font-medium px-4 py-1.5 rounded-lg transition-colors cursor-pointer"
           >
             רכישת גישה
-          </a>
+          </button>
         </div>
       </div>
     </nav>

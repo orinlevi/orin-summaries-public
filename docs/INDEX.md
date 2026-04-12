@@ -8,7 +8,7 @@ Welcome! This folder contains all documentation for the orin-summaries project.
 |------|------|--------------|
 | [CONTRIBUTING.md](CONTRIBUTING.md) | How to add courses, write Markdown, compile LaTeX, manage assets | When adding new content to the site |
 | [COUPONS.md](COUPONS.md) | Coupon codes, how to check usage, how to create new ones | When sharing access with friends |
-| [STORE_LAUNCH_CHECKLIST.md](STORE_LAUNCH_CHECKLIST.md) | Step-by-step: what to do when Lemon Squeezy approves the store | When the store gets approved |
+| [STORE_LAUNCH_CHECKLIST.md](STORE_LAUNCH_CHECKLIST.md) | Step-by-step: what to do when Paddle approves the store | When the store gets approved |
 | [DATABASE.md](DATABASE.md) | Database architecture: Postgres tables, Redis keys, auth flow diagram | When working on backend/data layer |
 | [AUDIT_BACKLOG.md](AUDIT_BACKLOG.md) | List of improvements sorted by priority, with git branch names | When you want to improve the site |
 
@@ -31,7 +31,7 @@ If you're an AI reading this project, here's what you need to know:
 - **Content**: Hebrew RTL, Markdown with KaTeX math and MkDocs admonitions
 - **Database**: Hybrid — PostgreSQL (Neon/Drizzle) for data, Redis (Vercel KV) for sessions
 - **Auth**: HMAC-SHA256 token in cookie, session check via Redis, purchase check via Postgres
-- **Payment**: Lemon Squeezy (store pending approval, test mode webhook active)
+- **Payment**: Paddle (store pending approval, test mode webhook active)
 - **Testing**: Playwright E2E (34 smoke tests), Vitest for unit tests
 - **Key config file**: `apps/web/content/courses.json` - all courses defined here
 - **LaTeX**: `xelatex` with polyglossia, never use `\tableofcontents` (bug)

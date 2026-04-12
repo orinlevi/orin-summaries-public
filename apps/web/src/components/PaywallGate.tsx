@@ -1,13 +1,21 @@
 "use client";
 
-const CHECKOUT_URL =
-  "https://orin-summaries.lemonsqueezy.com/checkout/buy/32690964-5df0-44e3-997d-d7ef3e719486?embed=1";
-
 interface PaywallGateProps {
   courseName: string;
 }
 
 export function PaywallGate({ courseName }: PaywallGateProps) {
+  function handleCheckout() {
+    const priceId = process.env.NEXT_PUBLIC_PADDLE_PRICE_ID;
+    if (!priceId || !window.Paddle) {
+      window.location.href = "/access";
+      return;
+    }
+    window.Paddle.Checkout.open({
+      items: [{ priceId, quantity: 1 }],
+    });
+  }
+
   return (
     <div className="mt-8 text-center py-16 px-4">
       <div className="max-w-md mx-auto">
@@ -21,13 +29,13 @@ export function PaywallGate({ courseName }: PaywallGateProps) {
         <p className="text-gray-400 dark:text-gray-600 text-[11px] mb-6">
           (עולה לי הון להכין אותם, בואו נחלוק בחרישות ובנטל)
         </p>
-        <a
-          href={CHECKOUT_URL}
-          className="lemonsqueezy-button inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-medium px-8 py-3 rounded-lg transition-colors"
+        <button
+          onClick={handleCheckout}
+          className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white font-medium px-8 py-3 rounded-lg transition-colors cursor-pointer"
         >
           רכישת גישה מלאה
           <span className="text-purple-200 text-xs">~friendly price</span>
-        </a>
+        </button>
         <p className="text-gray-400 dark:text-gray-600 text-xs mt-4">
           כבר רכשתם?{" "}
           <a

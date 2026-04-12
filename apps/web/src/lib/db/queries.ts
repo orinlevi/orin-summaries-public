@@ -83,7 +83,7 @@ export async function storePurchase(record: {
     userId,
     orderId: record.orderId,
     productId: record.productId,
-    source: record.source ?? "lemon-squeezy",
+    source: record.source ?? "paddle",
     expiresAt: new Date(record.expiresAt),
   });
 }

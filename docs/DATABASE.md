@@ -31,7 +31,7 @@ purchases
 ├── user_id (FK → users.id, CASCADE)
 ├── order_id (text, not null)
 ├── product_id (text, default "semester")
-├── source (text, default "lemon-squeezy")
+├── source (text, default "paddle")
 ├── created_at (timestamp)
 └── expires_at (timestamp, not null)
 

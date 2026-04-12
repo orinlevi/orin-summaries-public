@@ -401,7 +401,7 @@ apps/web/
 | `GET /api/download` | הורדת קבצים מוגנים |
 | `POST /api/auth/redeem-coupon` | מימוש קופון |
 | `POST /api/admin/create-coupon` | יצירת קופון (admin only) |
-| `POST /api/webhooks/lemonsqueezy` | webhook תשלום |
+| `POST /api/webhooks/paddle` | webhook תשלום |
 
 ---
 

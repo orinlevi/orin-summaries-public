@@ -4,6 +4,7 @@ import { Heebo } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { PaddleLoader } from "@/components/PaddleLoader";
 import "./globals.css";
 
 const heebo = Heebo({
@@ -67,10 +68,7 @@ export default function RootLayout({
         <div className="flex-1" id="main-content">{children}</div>
         <Footer />
         <Analytics />
-        <Script
-          src="https://assets.lemonsqueezy.com/lemon.js"
-          strategy="lazyOnload"
-        />
+        <PaddleLoader />
         {process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID && (
           <Script
             src="https://accounts.google.com/gsi/client"

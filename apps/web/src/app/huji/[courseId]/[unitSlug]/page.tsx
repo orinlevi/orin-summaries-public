@@ -7,6 +7,8 @@ import { ContentErrorBoundary } from "@/components/content/ContentErrorBoundary"
 import { TableOfContents } from "@/components/content/TableOfContents";
 import { ProtectedContent } from "@/components/ProtectedContent";
 import { BackToTop } from "@/components/ui/BackToTop";
+import { JumpToGlossary } from "@/components/ui/JumpToGlossary";
+import { UnitTableOfContents } from "@/components/ui/UnitTableOfContents";
 import { UnitProgress } from "@/components/UnitProgress";
 import { CopyCodeButton } from "@/components/content/CopyCodeButton";
 
@@ -31,9 +33,25 @@ export async function generateMetadata({ params }: Props) {
   if (!course) return {};
   const unit = getUnitBySlug(course, unitSlug);
   if (!unit) return {};
+  const description = `${unit.title} - ${course.title}`;
   return {
     title: `${unit.title} | ${course.title} | HUJI`,
-    description: `${unit.title} - ${course.title}`,
+    description,
+    openGraph: {
+      title: `${unit.title} | ${course.title} | HUJI`,
+      description,
+      url: `https://orin-summaries.vercel.app/huji/${courseId}/${unitSlug}`,
+      siteName: "Orin Summaries",
+      locale: "he_IL",
+      type: "article",
+      images: [{ url: "/logo.png", width: 512, height: 512, alt: unit.title }],
+    },
+    twitter: {
+      card: "summary",
+      title: `${unit.title} | ${course.title} | HUJI`,
+      description,
+      images: ["/logo.png"],
+    },
   };
 }
 
@@ -129,6 +147,8 @@ export default async function HujiUnitPage({ params }: Props) {
         </aside>
       </div>
       <BackToTop />
+      <UnitTableOfContents />
+      <JumpToGlossary />
     </div>
   );
 }

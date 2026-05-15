@@ -19,6 +19,21 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${course.title} | HUJI | Orin Summaries`,
     description: course.description,
+    openGraph: {
+      title: `${course.title} | HUJI | Orin Summaries`,
+      description: course.description,
+      url: `https://orin-summaries.vercel.app/huji/${courseId}`,
+      siteName: "Orin Summaries",
+      locale: "he_IL",
+      type: "website",
+      images: [{ url: "/logo.png", width: 512, height: 512, alt: course.title }],
+    },
+    twitter: {
+      card: "summary",
+      title: `${course.title} | HUJI | Orin Summaries`,
+      description: course.description,
+      images: ["/logo.png"],
+    },
   };
 }
 

@@ -8,6 +8,8 @@ const MIME: Record<string, string> = {
   ".pdf": "application/pdf",
   ".ipynb": "application/x-ipynb+json",
   ".py": "text/x-python",
+  ".docx":
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 };
 
 const SITE_URL = "https://orin-summaries.vercel.app";

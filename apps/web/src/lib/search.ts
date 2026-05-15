@@ -6,7 +6,7 @@ export interface SearchEntry {
   unitSlug: string;
   unitTitle: string;
   text: string;
-  university?: "tau" | "huji";
+  university?: "tau" | "huji" | "hi-tech-map";
 }
 
 let _fuseInstance: Fuse<SearchEntry> | null = null;
@@ -39,9 +39,10 @@ export async function getGlobalFuse(): Promise<Fuse<SearchEntry>> {
         { name: "text", weight: 1 },
         { name: "courseTitle", weight: 0.5 },
       ],
-      threshold: 0.35,
+      threshold: 0.2,
+      ignoreLocation: true,
       includeMatches: true,
-      minMatchCharLength: 2,
+      minMatchCharLength: 3,
     });
   }
 
@@ -52,12 +53,12 @@ export async function getGlobalFuse(): Promise<Fuse<SearchEntry>> {
 const _universityFuseCache = new Map<string, Fuse<SearchEntry>>();
 
 /** Get a Fuse instance scoped to a specific university. */
-export async function getUniversityFuse(university: "tau" | "huji"): Promise<Fuse<SearchEntry>> {
+export async function getUniversityFuse(university: "tau" | "huji" | "hi-tech-map"): Promise<Fuse<SearchEntry>> {
   await ensureLoaded();
 
   if (!_universityFuseCache.has(university)) {
     const uniData = _rawData!.filter((e) =>
-      university === "huji" ? e.university === "huji" : e.university !== "huji"
+      e.university === university || (!e.university && university === "tau")
     );
     const fuse = new Fuse(uniData, {
       keys: [
@@ -65,9 +66,10 @@ export async function getUniversityFuse(university: "tau" | "huji"): Promise<Fus
         { name: "text", weight: 1 },
         { name: "courseTitle", weight: 0.5 },
       ],
-      threshold: 0.35,
+      threshold: 0.2,
+      ignoreLocation: true,
       includeMatches: true,
-      minMatchCharLength: 2,
+      minMatchCharLength: 3,
     });
     _universityFuseCache.set(university, fuse);
   }
@@ -89,9 +91,10 @@ export async function getCourseFuse(courseId: string): Promise<Fuse<SearchEntry>
         { name: "unitTitle", weight: 2 },
         { name: "text", weight: 1 },
       ],
-      threshold: 0.35,
+      threshold: 0.2,
+      ignoreLocation: true,
       includeMatches: true,
-      minMatchCharLength: 2,
+      minMatchCharLength: 3,
     });
     _courseFuseCache.set(courseId, fuse);
   }

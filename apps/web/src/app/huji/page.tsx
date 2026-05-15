@@ -48,9 +48,11 @@ function HujiCourseCard({ course }: { course: Course }) {
             {course.title}
           </h3>
         </div>
-        <span className="text-xs font-medium bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 px-2.5 py-1 rounded-full border border-emerald-500/20">
-          free
-        </span>
+        {course.priceILS === 0 && (
+          <span className="text-xs font-medium bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 px-2.5 py-1 rounded-full border border-emerald-500/20">
+            free
+          </span>
+        )}
       </div>
       <p className="text-gray-500 dark:text-gray-400 text-sm mt-2 mb-3 line-clamp-2">
         {course.description}

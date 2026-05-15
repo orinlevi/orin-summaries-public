@@ -1,69 +1,57 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getCourseById, getUnitBySlug, getAdjacentUnits, getTauCourses } from "@/lib/courses";
+import { getCourseById, getUnitBySlug, getAdjacentUnits } from "@/lib/courses";
 import { getUnitContent } from "@/lib/content";
 import { MarkdownRenderer } from "@/components/content/MarkdownRenderer";
 import { ContentErrorBoundary } from "@/components/content/ContentErrorBoundary";
 import { TableOfContents } from "@/components/content/TableOfContents";
-import { ProtectedContent } from "@/components/ProtectedContent";
 import { BackToTop } from "@/components/ui/BackToTop";
-import { JumpToGlossary } from "@/components/ui/JumpToGlossary";
-import { UnitTableOfContents } from "@/components/ui/UnitTableOfContents";
-import { UnitProgress } from "@/components/UnitProgress";
 import { CopyCodeButton } from "@/components/content/CopyCodeButton";
+import { ProtectedContent } from "@/components/ProtectedContent";
 
 interface Props {
-  params: Promise<{ courseId: string; unitSlug: string }>;
+  params: Promise<{ unitSlug: string }>;
+}
+
+function getCourse() {
+  return getCourseById("hi-tech-map");
 }
 
 export async function generateStaticParams() {
-  const courses = getTauCourses();
-  const params: { courseId: string; unitSlug: string }[] = [];
-  for (const course of courses) {
-    for (const unit of course.units) {
-      params.push({ courseId: course.id, unitSlug: unit.slug });
-    }
-  }
-  return params;
+  const course = getCourse();
+  if (!course) return [];
+  return course.units.map((unit) => ({ unitSlug: unit.slug }));
 }
 
 export async function generateMetadata({ params }: Props) {
-  const { courseId, unitSlug } = await params;
-  const course = getCourseById(courseId);
+  const { unitSlug } = await params;
+  const course = getCourse();
   if (!course) return {};
   const unit = getUnitBySlug(course, unitSlug);
   if (!unit) return {};
-  const description = `${unit.title} - ${course.title}`;
+
+  // Find which section this unit belongs to
+  const section = course.sections.find((s) => s.items.some((i) => i.slug === unitSlug));
+  const sectionTitle = section?.name || "";
+
   return {
-    title: `${unit.title} | ${course.title}`,
-    description,
-    openGraph: {
-      title: `${unit.title} | ${course.title}`,
-      description,
-      url: `https://orin-summaries.vercel.app/course/${courseId}/${unitSlug}`,
-      siteName: "Orin Summaries",
-      locale: "he_IL",
-      type: "article",
-      images: [{ url: "/logo.png", width: 512, height: 512, alt: unit.title }],
-    },
-    twitter: {
-      card: "summary",
-      title: `${unit.title} | ${course.title}`,
-      description,
-      images: ["/logo.png"],
-    },
+    title: `${unit.title} | ${sectionTitle} | מפת הייטק`,
+    description: `${unit.title} — ${sectionTitle} | מפת הייטק`,
   };
 }
 
-export default async function UnitPage({ params }: Props) {
-  const { courseId, unitSlug } = await params;
-  const course = getCourseById(courseId);
+export default async function HiTechMapUnitPage({ params }: Props) {
+  const { unitSlug } = await params;
+  const course = getCourse();
   if (!course) notFound();
 
   const unit = getUnitBySlug(course, unitSlug);
   if (!unit) notFound();
 
   const { prev, next } = getAdjacentUnits(course, unitSlug);
+
+  // Find which section this unit belongs to
+  const section = course.sections.find((s) => s.items.some((i) => i.slug === unitSlug));
 
   let content: string;
   try {
@@ -76,8 +64,8 @@ export default async function UnitPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "קורסים", item: "https://orin-summaries.vercel.app/" },
-      { "@type": "ListItem", position: 2, name: course.title, item: `https://orin-summaries.vercel.app/course/${course.id}` },
+      { "@type": "ListItem", position: 1, name: "מפת הייטק", item: "https://orin-summaries.vercel.app/hi-tech-map" },
+      { "@type": "ListItem", position: 2, name: section?.name || "מדור", item: "https://orin-summaries.vercel.app/hi-tech-map" },
       { "@type": "ListItem", position: 3, name: unit.title },
     ],
   };
@@ -92,13 +80,11 @@ export default async function UnitPage({ params }: Props) {
         {/* Main content */}
         <main className="flex-1 min-w-0 max-w-4xl">
           <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-            <Link href="/" className="hover:text-gray-700 dark:hover:text-gray-300">
-              קורסים
+            <Link href="/hi-tech-map" className="hover:text-gray-700 dark:hover:text-gray-300">
+              מפת הייטק
             </Link>
             <span>/</span>
-            <Link href={`/course/${course.id}`} className="hover:text-gray-700 dark:hover:text-gray-300">
-              {course.title}
-            </Link>
+            <span className="text-gray-400 dark:text-gray-500">{section?.name}</span>
             <span>/</span>
             <span className="text-gray-700 dark:text-gray-300">{unit.title}</span>
           </nav>
@@ -112,7 +98,7 @@ export default async function UnitPage({ params }: Props) {
             <nav className="flex justify-between mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
               {prev ? (
                 <Link
-                  href={`/course/${course.id}/${prev.slug}`}
+                  href={`/hi-tech-map/${prev.slug}`}
                   className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
                 >
                   &rarr; {prev.title}
@@ -122,7 +108,7 @@ export default async function UnitPage({ params }: Props) {
               )}
               {next ? (
                 <Link
-                  href={`/course/${course.id}/${next.slug}`}
+                  href={`/hi-tech-map/${next.slug}`}
                   className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
                 >
                   {next.title} &larr;
@@ -131,13 +117,6 @@ export default async function UnitPage({ params }: Props) {
                 <div />
               )}
             </nav>
-
-            <UnitProgress
-              courseId={course.id}
-              unitId={unit.id}
-              unitIndex={course.units.findIndex((u) => u.slug === unitSlug)}
-              totalUnits={course.units.length}
-            />
           </ProtectedContent>
         </main>
 
@@ -147,8 +126,6 @@ export default async function UnitPage({ params }: Props) {
         </aside>
       </div>
       <BackToTop />
-      <UnitTableOfContents />
-      <JumpToGlossary />
     </div>
   );
 }

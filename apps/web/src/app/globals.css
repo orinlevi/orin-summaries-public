@@ -169,6 +169,28 @@ body {
 
 } /* end @layer base */
 
+/* === Home redesign ambient float animations (CSS-only, ornamental — never gate visibility) === */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(8deg); }
+}
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-8px) rotate(6deg); }
+}
+@keyframes drift {
+  0% { transform: translate(0, 0); }
+  33% { transform: translate(10px, -14px); }
+  66% { transform: translate(-8px, -6px); }
+  100% { transform: translate(0, 0); }
+}
+.float-slow { animation: float-slow 6s ease-in-out infinite; }
+.float-medium { animation: float-medium 4.5s ease-in-out infinite; }
+.drift { animation: drift 14s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .float-slow, .float-medium, .drift { animation: none; }
+}
+
 /* === Prose / Article Content === */
 article.prose {
   line-height: 1.65;
@@ -490,6 +512,11 @@ details.collapsible[open] > summary::before {
   direction: ltr;
   text-align: center;
   margin: 1rem 0;
+  /* Mobile: wide equations should scroll horizontally instead of overflowing */
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0;
 }
 
 .katex {
@@ -500,4 +527,76 @@ details.collapsible[open] > summary::before {
 /* Inline math in RTL text */
 article.prose .katex {
   unicode-bidi: isolate;
+}
+
+/* === Mobile responsiveness === */
+
+/* Tables: allow horizontal scroll for wide tables on small screens */
+@media (max-width: 768px) {
+  article.prose {
+    font-size: 0.95rem;
+  }
+
+  /* Wrap tables so they can scroll horizontally without breaking layout */
+  article.prose table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: normal;
+  }
+
+  /* Slightly smaller padding on cells for narrow screens */
+  article.prose th,
+  article.prose td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Reduce padding on admonitions */
+  .admonition {
+    margin-left: -0.25rem;
+    margin-right: -0.25rem;
+  }
+
+  /* Smaller display math on mobile */
+  .katex-display .katex {
+    font-size: 0.95em;
+  }
+
+  /* Code blocks scroll horizontally */
+  article.prose pre {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+/* Very narrow phones */
+@media (max-width: 480px) {
+  article.prose {
+    font-size: 0.9rem;
+  }
+
+  article.prose h1 { font-size: 1.5rem; }
+  article.prose h2 { font-size: 1.25rem; }
+  article.prose h3 { font-size: 1.1rem; }
+
+  .katex-display .katex {
+    font-size: 0.85em;
+  }
+}
+
+/* 3Blue1Brown figures inside lini1b notes — size + spacing */
+article.prose img[src*="/3b1b/"] {
+  display: block;
+  max-width: min(100%, 28rem);
+  margin: 1.5rem auto 0.25rem;
+  border-radius: 0.5rem;
+}
+
+article.prose img[src*="/3b1b/"] + em {
+  display: block;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--prose-blockquote-text);
+  margin-bottom: 1.5rem;
 }

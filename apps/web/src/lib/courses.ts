@@ -42,7 +42,7 @@ export interface Course {
   category: string;
   accentColor: string;
   priceILS: number;
-  university: "tau" | "huji";
+  university: "tau" | "huji" | "hi-tech-map";
   contentDir: string;
   sections: Section[];
   downloadables: Downloadable[];
@@ -75,7 +75,7 @@ interface RawCourse {
   category: string;
   accentColor: string;
   priceILS: number;
-  university?: "tau" | "huji";
+  university?: "tau" | "huji" | "hi-tech-map";
   contentDir: string;
   sections?: RawSection[];
   units?: RawUnit[];
@@ -127,6 +127,10 @@ export function getTauCourses(): Course[] {
 
 export function getHujiCourses(): Course[] {
   return getCourses().filter((c) => c.university === "huji");
+}
+
+export function getHiTechMapCourses(): Course[] {
+  return getCourses().filter((c) => c.university === "hi-tech-map");
 }
 
 export function getCourseById(id: string): Course | null {

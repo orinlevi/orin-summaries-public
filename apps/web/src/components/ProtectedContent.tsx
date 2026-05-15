@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { PaywallGate } from "./PaywallGate";
 
 const loadingQuips = [
@@ -24,9 +24,8 @@ export function ProtectedContent({ isFree, courseName, children }: Props) {
     isFree ? "granted" : "loading"
   );
 
-  const loadingText = useMemo(
-    () => loadingQuips[Math.floor(Math.random() * loadingQuips.length)],
-    []
+  const [loadingText] = useState(
+    () => loadingQuips[Math.floor(Math.random() * loadingQuips.length)]
   );
 
   useEffect(() => {

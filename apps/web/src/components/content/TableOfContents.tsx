@@ -5,50 +5,48 @@ import { useEffect, useState } from "react";
 interface TocItem {
   id: string;
   text: string;
-  level: number;
+  level: 2 | 3;
 }
 
-function extractHeadings(markdown: string): TocItem[] {
-  const headings: TocItem[] = [];
-  const lines = markdown.split("\n");
-
-  for (const line of lines) {
-    // Skip headings inside code blocks
-    const match = line.match(/^(#{2,3})\s+(.+)$/);
-    if (match) {
-      const level = match[1].length;
-      const text = match[2]
-        .replace(/\*\*/g, "")
-        .replace(/\*/g, "")
-        .replace(/`[^`]*`/g, (m) => m.slice(1, -1))
-        .replace(/\$[^$]*\$/g, "")
-        .trim();
-
-      // Generate ID same as rehype-slug
-      const id = text
-        .toLowerCase()
-        .replace(/[^\w\u0590-\u05FF\s-]/g, "")
-        .replace(/\s+/g, "-")
-        .replace(/-+/g, "-")
-        .replace(/^-|-$/g, "");
-
-      if (text && id) {
-        headings.push({ id, text, level });
-      }
-    }
-  }
-
-  return headings;
+/**
+ * Extract heading text from the rendered DOM, skipping KaTeX's hidden MathML
+ * annotation (which would otherwise duplicate the math content as raw LaTeX).
+ */
+function getHeadingText(h: Element): string {
+  const clone = h.cloneNode(true) as HTMLElement;
+  clone.querySelectorAll(".katex-mathml").forEach((n) => n.remove());
+  return clone.textContent?.replace(/\s+/g, " ").trim() || "";
 }
 
-export function TableOfContents({ markdown }: { markdown: string }) {
+export function TableOfContents({ markdown: _markdown }: { markdown?: string } = {}) {
+  const [headings, setHeadings] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
-  const headings = extractHeadings(markdown);
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      const article = document.querySelector("article.prose");
+      if (!article) return;
+      const items: TocItem[] = [];
+      article.querySelectorAll("h2, h3").forEach((h) => {
+        const id = h.id;
+        const text = getHeadingText(h);
+        if (text.includes("דף מושגים") || text.includes("בדיקת כיסוי")) return;
+        if (!id || !text) return;
+        items.push({
+          id,
+          text,
+          level: h.tagName === "H2" ? 2 : 3,
+        });
+      });
+      setHeadings(items);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (headings.length === 0) return;
     const observer = new IntersectionObserver(
       (entries) => {
-        // Find the first visible heading
         const visible = entries.find((e) => e.isIntersecting);
         if (visible) {
           setActiveId(visible.target.id);

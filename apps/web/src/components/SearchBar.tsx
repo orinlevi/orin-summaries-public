@@ -10,13 +10,14 @@ interface SearchableCourse {
   title: string;
   description: string;
   category: string;
-  university?: "tau" | "huji";
+  university?: "tau" | "huji" | "hi-tech-map";
 }
 
 const categoryEmoji: Record<string, string> = {
   "cs-math": "\u{1F4BB}",
   psychology: "\u{1F9E0}",
   neuroscience: "\u{1F52C}",
+  "hi-tech": "\u{1F5FA}\u{FE0F}",
 };
 
 interface ResultItem {
@@ -28,7 +29,7 @@ interface ResultItem {
   snippet?: string;
 }
 
-export function SearchBar({ courses, university }: { courses: SearchableCourse[]; university?: "tau" | "huji" }) {
+export function SearchBar({ courses, university }: { courses: SearchableCourse[]; university?: "tau" | "huji" | "hi-tech-map" }) {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [contentResults, setContentResults] = useState<FuseResult<SearchEntry>[]>([]);
@@ -51,14 +52,14 @@ export function SearchBar({ courses, university }: { courses: SearchableCourse[]
   const allItems: ResultItem[] = [
     ...filtered.map((c) => ({
       id: `course-${c.id}`,
-      href: `/${c.university === "huji" ? "huji" : "course"}/${c.id}`,
+      href: c.university === "hi-tech-map" ? "/hi-tech-map" : `/${c.university === "huji" ? "huji" : "course"}/${c.id}`,
       label: c.title,
       sublabel: c.description,
       emoji: categoryEmoji[c.category] || "\u{1F4DA}",
     })),
     ...contentResults.map((r) => ({
       id: `content-${r.item.courseId}-${r.item.unitSlug}`,
-      href: `/${r.item.university === "huji" ? "huji" : "course"}/${r.item.courseId}/${r.item.unitSlug}`,
+      href: r.item.university === "hi-tech-map" ? `/hi-tech-map/${r.item.unitSlug}` : `/${r.item.university === "huji" ? "huji" : "course"}/${r.item.courseId}/${r.item.unitSlug}`,
       label: r.item.unitTitle,
       sublabel: r.item.courseTitle,
       snippet: getSnippet(r.item.text, query) || undefined,
